@@ -48,3 +48,17 @@ Chrome DevTools, 1540px and 1100px widths:
 - Playwright MCP navigation could not run because its browser profile was in use. Chrome DevTools supplied the browser interaction checks and screenshot inspection.
 
 Not exhaustively verified: full keyboard traversal, injected refresh/basemap failures, reset confirmation in the browser, all corrective-action UI permutations, and live write behavior (no live contract exists). Automated tests cover reject/remove semantics, duplicate acceptance, invalid IDs, refresh replay and original evidence preservation. No end-to-end Witness submission tested or added by this change.
+
+## Isolated branch handoff
+
+A concurrent session switched the shared checkout to feat/witness-mobile-camera. The authoritative Pro implementation is now in .worktrees/2b on branch 2b. Only the eight Pro files listed above were copied; the concurrent dashboard branding change was excluded to retain the starting branch's existing wordmark. Shared-checkout copies were left intact to avoid disrupting the other session. No commit or push was made.
+
+In the isolated worktree: 11 tests pass, lint passes, and typecheck passes. The first build attempt could not resolve Next.js because dependencies were outside the worktree; local cached installation was then attempted. Browser checks above were on the shared development server before isolation.
+
+Final isolated validation: npm ci --offline --ignore-scripts succeeded; npm run build passed, including TypeScript. The base commit had an unmatched closing brace at app/landing.css:205; removing that one brace was necessary for the build (additional changed file, no redesign). Final branch checks: 11 tests passed, lint passed, typecheck passed, production build passed. Changes are uncommitted in .worktrees/2b.
+
+## Analytical redesign update
+
+Implemented shared MapLibre renderer, simplified Normal summary, map-centered Pro, on-demand inspector, shift-drag rectangle and current-viewport selection, fit observations, relative observation density (minimum 10 located records, visualization choice), smoothing radius, receipt/observation date filters, timeline-end scrubber and linked records table. Both modes retain the explicitly chosen dataset and visible analysis filters. Added public/data/intelligence-analysis.json with 72 explicitly synthetic authored observations; original eight-report dataset remains the default. No known reposts are present; independence remains unknown.
+
+Dependency: maplibre-gl; package and lockfile updated. New tests validate scenario labels, unique IDs and missing values. npm run typecheck, npm run lint, npm test (12 passed), npm run build passed. Browser at localhost:3002 verified scenario selection, 72 rows, area selection yielding 65 located reports, retained dataset and spatial filter in Normal, canvas rendering and no page overflow. Some map resources failed and the visible warning preserved evidence access. Full rectangle gesture, density visual calibration, keyboard traversal and small-screen regression remain unverified. Timeline scrubber currently spans the fixed August demo dates; date fields remain explicit UTC, displayed event timestamps WIB. No terrain source added. npm audit reports 8 moderate advisories in the ESLint/minimatch development chain; no MapLibre advisory reported. Changes remain uncommitted on the isolated 2b worktree.

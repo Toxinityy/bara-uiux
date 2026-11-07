@@ -1,6 +1,6 @@
 # Witness mobile UI preview
 
-Route: `/witness`. Branch: `feat/witness-mobile-camera`.
+Route: `/witness`. Branch: `witness-mobile`.
 
 Uses the supplied BARA v2 brand guidelines, local `public/fonts/InterVariable.woff2`, existing logo artwork, and Lucide icons. The landing page Witness action links here.
 

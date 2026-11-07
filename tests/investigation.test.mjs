@@ -23,3 +23,11 @@ test('refresh replay preserves demo changes while rejecting unknown report IDs',
   assert.deepEqual(applyDemoActions(structuredClone(data), [action]), applyDemoActions(data, [action]));
   assert.deepEqual(applyDemoActions(data, [{...action,reportId:'unknown'}]), data);
 });
+
+ test('analysis scenario remains synthetic with unique IDs and visible missing data', async () => {
+ const scenario=JSON.parse(await readFile(new URL('../public/data/intelligence-analysis.json',import.meta.url)));
+ assert.equal(scenario.demo,true);assert.equal(scenario.reports.length,72);
+ assert.equal(new Set(scenario.reports.map(r=>r.id)).size,72);
+ assert.ok(scenario.reports.some(r=>!r.position));assert.ok(scenario.reports.some(r=>!r.observedAt));
+ assert.ok(scenario.reports.every(r=>r.description.includes('Authored analysis scenario')));
+ });
