@@ -41,6 +41,8 @@ MapLibre GL JS is the renderer, not a data provider: https://maplibre.org/maplib
 
 `public/data/intelligence-demo.json` and `public/data/intelligence-analysis.json` are authored synthetic examples, not real witness reports. Real weather loaded for their hypothetical positions/times does not authenticate them. Density represents submitted observation positions, not fire intensity. Known source independence is unavailable.
 
+The UI now presents these records as a capture-session preview aligned with `public/UI-BACKEND-HANDOFF.md`. The eight-record source contains illustrative criterion results and checklists; no real images or AI calls produced them. The 72-position map scenario has no analysis results. Backend connection is intentionally deferred. See `docs/backend-ui-alignment.md` for field mappings and remaining dependencies.
+
 ## Not integrated
 
 BMKG, satellite hotspots, terrain, live Witness submissions, automatic verification, spread prediction and danger scores are not part of this weather integration. No provider outages are silently replaced with another source.

@@ -1,6 +1,6 @@
 # BARA landing page
 
-English landing page and a working Normal Intelligence dashboard at `/intelligence`. Intelligence uses explicitly synthetic records; Witness remains an illustrative landing-page preview. No backend, authentication, AI analysis, or report submission is implemented.
+English landing page and shared Normal/Pro Intelligence workspace at `/intelligence`. The UI uses explicitly synthetic capture-session and analysis examples aligned with [the backend handoff](public/UI-BACKEND-HANDOFF.md). No backend connection, authentication, real AI processing, or report submission is implemented in this checkout. Witness remains an illustrative landing-page preview.
 
 Requires Node.js 24 (the built-in test runner loads TypeScript data directly) and npm.
 
@@ -25,7 +25,9 @@ Landing components live in `components/landing/`. Normal/Pro uses Radix tabs and
 
 The existing dashboard lives in `components/intelligence/`, with its original route-scoped styles in `app/intelligence/intelligence.css`. Its application code is unchanged by the landing redesign.
 
-The shared adapter and validated frontend types are in `lib/intelligence.ts`; its complete synthetic dataset is `public/data/intelligence-demo.json`. Refresh requests that file again. Receipt-time windows use its fixed reference clock, 18 August 2026 at 16:00 WIB. Area and receipt period are URL values; search and coordinates stay out of URLs. Pro in the application remains unavailable; the landing page’s local Pro preview does not enable it.
+The shared adapter and validated frontend types are in `lib/intelligence.ts`. Refresh reloads the selected preview source. The original eight captures and the 72-position map scenario retain their stable IDs and positions. Session groupings and image-assessment examples are authored UI fixtures. Capture-time windows use the dataset reference clock, 18 August 2026 at 16:00 WIB; unknown capture times have an explicit inclusion choice. Search and coordinates stay out of URLs. Phones use Normal; tablets and desktops can open Pro.
+
+Normal shows captures, sessions and concise photo findings. Pro adds session checklists, evidence-source links, missing information, current witness request context, distinct capture/analysis timelines, and two-capture comparison. Session lifecycle, analysis processing and evidence coverage have separate indicators. Claims, operational incident grouping and saved review actions are unavailable. See [UI alignment notes](docs/backend-ui-alignment.md) for mappings and integration gaps.
 
 Inter is subset locally to Latin/Latin Extended, punctuation and currency symbols for this English iteration (151 KB WOFF2, down from 352 KB). Expand the subset before adding other scripts. Late-loaded GSAP skips hero entrances after 1.5 seconds so slow connections do not move text already being read.
 

@@ -2,17 +2,1518 @@
   "demo": true,
   "referenceTime": "2026-08-18T09:00:00Z",
   "reports": [
-    {"id":"DEMO-008","title":"Thin plume beyond the tree line","description":"A thin grey plume was visible beyond the tree line from a roadside position. The base could not be seen.","area":"Palangka Raya","receivedAt":"2026-08-18T08:32:00Z","observedAt":"2026-08-18T08:20:00Z","review":"Awaiting review","position":{"latitude":-2.16,"longitude":113.87,"authorized":true},"claims":[{"subject":"Smoke","assessment":"Reported","source":"Synthetic witness statement"},{"subject":"Fire presence","assessment":"Unresolved","source":"No flame or independent evidence available"},{"subject":"Source location","assessment":"Unresolved","source":"Plume base not visible"}]},
-    {"id":"DEMO-007","title":"Distant smoke seen from the river","description":"The witness described a distant smoke-like column while beside the river. Viewing direction was not provided.","area":"Pulang Pisau","receivedAt":"2026-08-18T07:45:00Z","observedAt":"2026-08-18T07:30:00Z","review":"Reviewed · unresolved","position":{"latitude":-2.49,"longitude":114.05,"authorized":true},"claims":[{"subject":"Smoke","assessment":"Reported","source":"Synthetic witness statement"},{"subject":"Fire presence","assessment":"Unresolved","source":"No independent evidence available"},{"subject":"Source location","assessment":"Unresolved","source":"Viewing direction not provided"}]},
-    {"id":"DEMO-006","title":"Haze reported near a village road","description":"Light haze was described near a village road. Location sharing was declined; the area label was supplied by the witness.","area":"Pulang Pisau","receivedAt":"2026-08-18T06:10:00Z","observedAt":null,"review":"Awaiting review","position":null,"claims":[{"subject":"Smoke","assessment":"Unresolved","source":"Haze description does not establish smoke"},{"subject":"Fire presence","assessment":"Unresolved","source":"No supporting evidence provided"},{"subject":"Source location","assessment":"Unresolved","source":"No display position provided"}]},
-    {"id":"DEMO-005","title":"Intermittent smoke above vegetation","description":"Small amounts of smoke were reported above vegetation. The observer remained on the road; the source was out of view.","area":"Palangka Raya","receivedAt":"2026-08-17T09:25:00Z","observedAt":"2026-08-17T09:10:00Z","review":"Reviewed · unresolved","position":{"latitude":-2.24,"longitude":113.94,"authorized":true},"claims":[{"subject":"Smoke","assessment":"Reported","source":"Synthetic witness statement"},{"subject":"Fire presence","assessment":"Unresolved","source":"The source was not visible"},{"subject":"Source location","assessment":"Unresolved","source":"Observer location only"}]},
-    {"id":"DEMO-004","title":"Grey plume seen across open land","description":"A grey plume was reported across open land. The available statement does not identify its source.","area":"Katingan","receivedAt":"2026-08-16T08:15:00Z","observedAt":"2026-08-16T07:50:00Z","review":"Awaiting review","position":{"latitude":-1.97,"longitude":113.48,"authorized":true},"claims":[{"subject":"Smoke","assessment":"Reported","source":"Synthetic witness statement"},{"subject":"Fire presence","assessment":"Unresolved","source":"No independent evidence available"},{"subject":"Source location","assessment":"Unresolved","source":"Source not identified"}]},
-    {"id":"DEMO-003","title":"Smoke-like column in the distance","description":"A witness reported a smoke-like column but did not provide an area. A device position is withheld from display.","area":null,"receivedAt":"2026-08-14T04:40:00Z","observedAt":null,"review":"Awaiting review","position":{"latitude":-2.1,"longitude":113.7,"authorized":false},"claims":[{"subject":"Smoke","assessment":"Reported","source":"Synthetic witness statement"},{"subject":"Fire presence","assessment":"Unresolved","source":"No supporting evidence provided"},{"subject":"Source location","assessment":"Unresolved","source":"Area and direction unknown"}]},
-    {"id":"DEMO-002","title":"Low visibility along a forest edge","description":"Low visibility was described along a forest edge. The witness did not report smoke or flames.","area":"Katingan","receivedAt":"2026-08-10T06:00:00Z","observedAt":"2026-08-10T05:45:00Z","review":"Reviewed · unresolved","position":{"latitude":-2.12,"longitude":113.39,"authorized":true},"claims":[{"subject":"Smoke","assessment":"Not reported","source":"Synthetic witness statement"}]},
-    {"id":"DEMO-001","title":"Possible smoke beyond a clearing","description":"A distant plume was reported beyond a clearing. Fire presence and the source location could not be established.","area":"Palangka Raya","receivedAt":"2026-08-08T07:30:00Z","observedAt":"2026-08-08T07:10:00Z","review":"Reviewed · unresolved","position":{"latitude":-2.32,"longitude":113.78,"authorized":true},"claims":[{"subject":"Smoke","assessment":"Reported","source":"Synthetic witness statement"},{"subject":"Fire presence","assessment":"Unresolved","source":"Insufficient evidence"},{"subject":"Source location","assessment":"Unresolved","source":"No supporting evidence available"}]}
+    {
+      "id": "DEMO-008",
+      "title": "Thin plume beyond the tree line",
+      "description": "A thin grey plume was visible beyond the tree line from a roadside position. The base could not be seen.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-18T08:32:00Z",
+      "observedAt": "2026-08-18T08:20:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.16,
+        "longitude": 113.87,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-01",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "not_visible_in_frame",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "visible",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "color": "grey",
+              "apparentOrigin": "not established"
+            }
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "target": "source obscured",
+              "relativeDepth": "distant",
+              "distanceAssessment": "insufficient visual information"
+            }
+          }
+        ],
+        "analyzedAt": "2026-08-18T08:32:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-007",
+      "title": "Distant smoke seen from the river",
+      "description": "The witness described a distant smoke-like column while beside the river. Viewing direction was not provided.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-18T07:45:00Z",
+      "observedAt": "2026-08-18T07:30:00Z",
+      "review": "Reviewed · unresolved",
+      "position": {
+        "latitude": -2.49,
+        "longitude": 114.05,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Viewing direction not provided"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-01",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "not_visible_in_frame",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "visible",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "color": "grey",
+              "apparentOrigin": "not established"
+            }
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          }
+        ],
+        "analyzedAt": "2026-08-18T07:45:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-006",
+      "title": "Haze reported near a village road",
+      "description": "Light haze was described near a village road. Location sharing was declined; the area label was supplied by the witness.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-18T06:10:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Unresolved",
+          "source": "Haze description does not establish smoke"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No supporting evidence provided"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "No display position provided"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-01",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          }
+        ],
+        "analyzedAt": "2026-08-18T06:10:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-005",
+      "title": "Intermittent smoke above vegetation",
+      "description": "Small amounts of smoke were reported above vegetation. The observer remained on the road; the source was out of view.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-17T09:25:00Z",
+      "observedAt": "2026-08-17T09:10:00Z",
+      "review": "Reviewed · unresolved",
+      "position": {
+        "latitude": -2.24,
+        "longitude": 113.94,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "The source was not visible"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Observer location only"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-02",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "not_visible_in_frame",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "visible",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "color": "grey",
+              "apparentOrigin": "not established"
+            }
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "target": "source obscured",
+              "relativeDepth": "distant",
+              "distanceAssessment": "insufficient visual information"
+            }
+          }
+        ],
+        "analyzedAt": "2026-08-17T09:25:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-004",
+      "title": "Grey plume seen across open land",
+      "description": "A grey plume was reported across open land. The available statement does not identify its source.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-16T08:15:00Z",
+      "observedAt": "2026-08-16T07:50:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -1.97,
+        "longitude": 113.48,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Source not identified"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-02",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "not_visible_in_frame",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "visible",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "color": "grey",
+              "apparentOrigin": "not established"
+            }
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "target": "source obscured",
+              "relativeDepth": "distant",
+              "distanceAssessment": "insufficient visual information"
+            }
+          }
+        ],
+        "analyzedAt": "2026-08-16T08:15:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-003",
+      "title": "Smoke-like column in the distance",
+      "description": "A witness reported a smoke-like column but did not provide an area. A device position is withheld from display.",
+      "area": null,
+      "receivedAt": "2026-08-14T04:40:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1,
+        "longitude": 113.7,
+        "authorized": false
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No supporting evidence provided"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Area and direction unknown"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-02",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "not_visible_in_frame",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "visible",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "color": "grey",
+              "apparentOrigin": "not established"
+            }
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "unavailable",
+            "message": "Assessment unavailable in this example."
+          }
+        ],
+        "analyzedAt": "2026-08-14T04:40:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-002",
+      "title": "Low visibility along a forest edge",
+      "description": "Low visibility was described along a forest edge. The witness did not report smoke or flames.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-10T06:00:00Z",
+      "observedAt": "2026-08-10T05:45:00Z",
+      "review": "Reviewed · unresolved",
+      "position": {
+        "latitude": -2.12,
+        "longitude": 113.39,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Not reported",
+          "source": "Synthetic witness statement"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-03",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "not_visible_in_frame",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "visible",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "color": "grey",
+              "apparentOrigin": "not established"
+            }
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ]
+            }
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "criterionVersion": 1,
+            "status": "completed",
+            "message": "Synthetic image assessment for UI preview.",
+            "result": {
+              "classification": "uncertain",
+              "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+              "limitations": [
+                "The source is not established by this frame.",
+                "No independent corroboration supplied."
+              ],
+              "target": "source obscured",
+              "relativeDepth": "distant",
+              "distanceAssessment": "insufficient visual information"
+            }
+          }
+        ],
+        "analyzedAt": "2026-08-10T06:00:00Z",
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    },
+    {
+      "id": "DEMO-001",
+      "title": "Possible smoke beyond a clearing",
+      "description": "A distant plume was reported beyond a clearing. Fire presence and the source location could not be established.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-08T07:30:00Z",
+      "observedAt": "2026-08-08T07:10:00Z",
+      "review": "Reviewed · unresolved",
+      "position": {
+        "latitude": -2.32,
+        "longitude": 113.78,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "Insufficient evidence"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "No supporting evidence available"
+        }
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-03",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": "Illustrative per-photo findings, not a witness statement.",
+        "followUp": {
+          "summary": "The source is not visible in this example.",
+          "nextRequest": "Additional context would help assess the visible plume."
+        }
+      }
+    }
   ],
   "incidents": [
-    {"id":"DEMO-INC-01","title":"Palangka Raya observation group","reportIds":["DEMO-008","DEMO-005","DEMO-001"]},
-    {"id":"DEMO-INC-02","title":"Pulang Pisau observation group","reportIds":["DEMO-007","DEMO-006"]}
+    {
+      "id": "DEMO-INC-01",
+      "title": "Palangka Raya observation group",
+      "reportIds": [
+        "DEMO-008",
+        "DEMO-005",
+        "DEMO-001"
+      ]
+    },
+    {
+      "id": "DEMO-INC-02",
+      "title": "Pulang Pisau observation group",
+      "reportIds": [
+        "DEMO-007",
+        "DEMO-006"
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "id": "PREVIEW-SESSION-01",
+      "startedAt": "2026-08-18T07:30:00Z",
+      "endedAt": null,
+      "status": "active",
+      "checklistRevision": 3,
+      "checklist": {
+        "verificationStatus": "incomplete",
+        "snapshotIds": [
+          "DEMO-008",
+          "DEMO-007",
+          "DEMO-006"
+        ],
+        "latestSnapshotId": "DEMO-008",
+        "items": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-008",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "not_visible_in_frame",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-007",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "not_visible_in_frame",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-006"
+            ]
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-008",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-007",
+              "DEMO-006"
+            ]
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-008",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-007",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-006"
+            ]
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "scope": "session",
+            "status": "resolved",
+            "known": {
+              "color": {
+                "value": "grey",
+                "snapshotId": "DEMO-008",
+                "capturedAt": "2026-08-18T08:20:00Z"
+              }
+            },
+            "unresolvedFields": [],
+            "observations": [
+              {
+                "snapshotId": "DEMO-008",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "visible",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "color": "grey",
+                  "apparentOrigin": "not established"
+                }
+              },
+              {
+                "snapshotId": "DEMO-007",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "visible",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "color": "grey",
+                  "apparentOrigin": "not established"
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-006"
+            ]
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-008",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-007",
+              "DEMO-006"
+            ]
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "scope": "current_snapshot",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-008",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "target": "source obscured",
+                  "relativeDepth": "distant",
+                  "distanceAssessment": "insufficient visual information"
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-007",
+              "DEMO-006"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "id": "visible_flames.classification",
+            "criterionKey": "visible_flames",
+            "field": "classification",
+            "priority": 1
+          },
+          {
+            "id": "forest_woodland_fire.classification",
+            "criterionKey": "forest_woodland_fire",
+            "field": "classification",
+            "priority": 2
+          },
+          {
+            "id": "fire_suppression.classification",
+            "criterionKey": "fire_suppression",
+            "field": "classification",
+            "priority": 3
+          },
+          {
+            "id": "visibly_burning_material.classification",
+            "criterionKey": "visibly_burning_material",
+            "field": "classification",
+            "priority": 5
+          },
+          {
+            "id": "camera_to_fire_distance.classification",
+            "criterionKey": "camera_to_fire_distance",
+            "field": "classification",
+            "priority": 6
+          }
+        ],
+        "summary": "Earlier observations remain tied to their capture time. Several fields still need evidence."
+      },
+      "instruction": {
+        "status": "ready",
+        "witnessMessage": "If it is safe, capture another view from your current position.",
+        "reason": "The source is obscured in the available view.",
+        "gapId": "visible_flames.classification",
+        "checklistRevision": 3
+      }
+    },
+    {
+      "id": "PREVIEW-SESSION-02",
+      "startedAt": "2026-08-16T07:50:00Z",
+      "endedAt": "2026-08-17T09:10:00Z",
+      "status": "ended",
+      "checklistRevision": 3,
+      "checklist": {
+        "verificationStatus": "incomplete",
+        "snapshotIds": [
+          "DEMO-005",
+          "DEMO-004",
+          "DEMO-003"
+        ],
+        "latestSnapshotId": "DEMO-005",
+        "items": [
+          {
+            "criterionKey": "visible_flames",
+            "criterionName": "Visible flames",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-005",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "not_visible_in_frame",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-004",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "not_visible_in_frame",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-003",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "not_visible_in_frame",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": []
+          },
+          {
+            "criterionKey": "forest_woodland_fire",
+            "criterionName": "Woodland burning",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-005",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-004",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-003"
+            ]
+          },
+          {
+            "criterionKey": "fire_suppression",
+            "criterionName": "Fire suppression",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-005",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-004",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-003",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": []
+          },
+          {
+            "criterionKey": "smoke_visibility_color_origin",
+            "criterionName": "Smoke visibility and origin",
+            "scope": "session",
+            "status": "resolved",
+            "known": {
+              "color": {
+                "value": "grey",
+                "snapshotId": "DEMO-005",
+                "capturedAt": "2026-08-17T09:10:00Z"
+              }
+            },
+            "unresolvedFields": [],
+            "observations": [
+              {
+                "snapshotId": "DEMO-005",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "visible",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "color": "grey",
+                  "apparentOrigin": "not established"
+                }
+              },
+              {
+                "snapshotId": "DEMO-004",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "visible",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "color": "grey",
+                  "apparentOrigin": "not established"
+                }
+              },
+              {
+                "snapshotId": "DEMO-003",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "visible",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "color": "grey",
+                  "apparentOrigin": "not established"
+                }
+              }
+            ],
+            "unavailableSnapshotIds": []
+          },
+          {
+            "criterionKey": "visibly_burning_material",
+            "criterionName": "Visibly burning material",
+            "scope": "session",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-005",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              },
+              {
+                "snapshotId": "DEMO-004",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ]
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-003"
+            ]
+          },
+          {
+            "criterionKey": "camera_to_fire_distance",
+            "criterionName": "Camera-to-fire distance",
+            "scope": "current_snapshot",
+            "status": "uncertain",
+            "known": {},
+            "unresolvedFields": [
+              "classification"
+            ],
+            "observations": [
+              {
+                "snapshotId": "DEMO-005",
+                "criterionVersion": 1,
+                "result": {
+                  "classification": "uncertain",
+                  "visualEvidence": "Illustrative result only; no real photo was analyzed.",
+                  "limitations": [
+                    "The source is not established by this frame.",
+                    "No independent corroboration supplied."
+                  ],
+                  "target": "source obscured",
+                  "relativeDepth": "distant",
+                  "distanceAssessment": "insufficient visual information"
+                }
+              }
+            ],
+            "unavailableSnapshotIds": [
+              "DEMO-003"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "id": "visible_flames.classification",
+            "criterionKey": "visible_flames",
+            "field": "classification",
+            "priority": 1
+          },
+          {
+            "id": "forest_woodland_fire.classification",
+            "criterionKey": "forest_woodland_fire",
+            "field": "classification",
+            "priority": 2
+          },
+          {
+            "id": "fire_suppression.classification",
+            "criterionKey": "fire_suppression",
+            "field": "classification",
+            "priority": 3
+          },
+          {
+            "id": "visibly_burning_material.classification",
+            "criterionKey": "visibly_burning_material",
+            "field": "classification",
+            "priority": 5
+          },
+          {
+            "id": "camera_to_fire_distance.classification",
+            "criterionKey": "camera_to_fire_distance",
+            "field": "classification",
+            "priority": 6
+          }
+        ],
+        "summary": "Earlier observations remain tied to their capture time. Several fields still need evidence."
+      },
+      "instruction": {
+        "status": "not_needed",
+        "reason": "No additional eligible request in this preview; evidence remains incomplete."
+      }
+    },
+    {
+      "id": "PREVIEW-SESSION-03",
+      "startedAt": "2026-08-08T07:10:00Z",
+      "endedAt": "2026-08-10T05:45:00Z",
+      "status": "ended",
+      "checklistRevision": 3
+    }
   ]
 }

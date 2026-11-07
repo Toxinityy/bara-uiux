@@ -114,3 +114,50 @@
  .bi-app:not(.bi-pro) .bi-main { padding-top: 20px; }
 }
 @media(prefers-reduced-motion:reduce) { .bi-app select { transition: none; } }
+
+/* Session and image assessment states remain separate from incident certainty. */
+.evidence-state { display: inline-block; padding: 3px 7px; border: 1px solid var(--line); border-radius: 5px; font-size: 11px; font-weight: 400; line-height: 1.4; color: var(--muted); text-transform: capitalize; white-space: nowrap; }
+.evidence-state[data-state=unavailable],.evidence-state[data-state=uncertain] { color: var(--unknown); background: #242b33; }
+.evidence-state[data-state=completed],.evidence-state[data-state=resolved] { color: var(--focus); }
+.capture-time-note { grid-column: 1/-1; margin: 8px 0 14px; font-size: 12px; color: var(--muted); }
+.capture-media { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 24px 16px; margin: 18px 0; background: var(--raised); border-radius: 8px; color: var(--muted); }
+.capture-media strong { color: var(--ink); font-size: 14px; font-weight: 500; }
+.capture-media span { font-size: 12px; line-height: 1.5; max-width: 36ch; }
+.capture-evidence { min-width: 0; max-width: 780px; }
+.capture-evidence h3 { margin: 24px 0 8px; font-size: 16px; }
+.capture-metadata>summary { padding: 10px 0; color: var(--muted); }
+.capture-metadata>summary::after { content: ''; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); margin-right: 3px; }
+.capture-metadata[open]>summary::after { transform: rotate(225deg); }
+.evidence-caution,.capability-note { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.criterion-result { border-top: 1px solid var(--line); padding: 0; }
+.criterion-result>summary { padding: 15px 0; gap: 12px; font-weight: 500; line-height: 1.4; }
+.criterion-result>summary>span:first-child { flex: 1; }
+.criterion-result>summary::after,.source-observation>summary::after,.capability-note>summary::after { content: ''; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); flex-shrink: 0; margin-right: 3px; }
+.criterion-result[open]>summary::after,.source-observation[open]>summary::after,.capability-note[open]>summary::after { transform: rotate(225deg); }
+.criterion-result>small { display: block; color: var(--muted); margin: 12px 0 18px; }
+.result-fields { margin: 8px 0 18px; font-size: 13px; }
+.result-fields>div { padding: 9px 0; }
+.result-fields dt { color: var(--muted); font-size: 12px; text-transform: capitalize; }
+.result-fields dd { margin: 4px 0 0; overflow-wrap: anywhere; }
+.result-fields ul { padding-left: 18px; margin: 6px 0; }
+.session-state { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.session-state strong { font-weight: 500; color: var(--focus); }
+.known-evidence { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 0; }
+.known-evidence strong { text-transform: capitalize; }
+.known-evidence small,.source-observation>small { color: var(--muted); }
+.source-observation { border-top: 1px solid var(--line); }
+.source-observation>summary,.capability-note>summary { padding: 12px 0; gap: 12px; font-size: 12px; }
+.gap-list { padding: 0; list-style: none; }
+.gap-list li { display: flex; justify-content: space-between; gap: 15px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.gap-list small { flex-shrink: 0; color: var(--muted); }
+.capability-note { border-top: 1px solid var(--line); margin-top: 24px; }
+.pro-body .session-capture { display: flex; flex-direction: column; gap: 6px; width: 100%; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.session-capture span,.session-capture small { color: var(--muted); }
+.pro-comparison { grid-template-columns: 1fr; gap: 24px; }
+.bi-pro .analysis-controls h2,.bi-pro .analysis-controls p { flex-basis: 100%; margin: 0; }
+.bi-pro .analysis-controls h2 { font-size: 18px; }
+.bi-pro .analysis-controls p { color: var(--muted); line-height: 1.5; }
+.bi-pro .analysis-controls label { flex-direction: column; align-items: flex-start; }
+.bi-pro .analysis-controls label:has(input[type=checkbox]) { flex-direction: row; align-items: center; }
+.bi-pro .pro-pane:has(.pro-comparison) { width: min(820px,calc(100% - 32px)); }
+@media(min-width:1100px) { .pro-comparison { grid-template-columns: 1fr 1fr; } }

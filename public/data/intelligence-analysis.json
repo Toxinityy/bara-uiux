@@ -27,7 +27,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-01",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-002",
@@ -58,7 +67,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-01",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-003",
@@ -89,7 +107,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-01",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-004",
@@ -120,7 +147,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-02",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-005",
@@ -151,7 +187,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-02",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-006",
@@ -182,7 +227,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-02",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-007",
@@ -213,7 +267,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-03",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-008",
@@ -244,7 +307,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-03",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-009",
@@ -275,7 +347,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-03",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-010",
@@ -306,7 +387,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-04",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-011",
@@ -337,7 +427,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-04",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-012",
@@ -364,7 +463,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-04",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-013",
@@ -395,7 +503,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-05",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-014",
@@ -426,7 +543,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-05",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-015",
@@ -457,7 +583,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-05",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-016",
@@ -488,7 +623,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-06",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-017",
@@ -519,7 +663,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-06",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-018",
@@ -550,7 +703,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-06",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-019",
@@ -581,7 +743,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-07",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-020",
@@ -612,7 +783,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-07",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-021",
@@ -643,7 +823,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-07",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-022",
@@ -674,7 +863,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-08",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-023",
@@ -701,7 +899,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-08",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-024",
@@ -732,7 +939,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-08",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-025",
@@ -763,7 +979,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-09",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-026",
@@ -794,7 +1019,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-09",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-027",
@@ -825,7 +1059,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-09",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-028",
@@ -856,7 +1099,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-10",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-029",
@@ -887,7 +1139,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-10",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-030",
@@ -918,7 +1179,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-10",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-031",
@@ -949,7 +1219,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-11",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-032",
@@ -980,7 +1259,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-11",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-033",
@@ -1011,7 +1299,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-11",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-034",
@@ -1038,7 +1335,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-12",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-035",
@@ -1069,7 +1375,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-12",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-036",
@@ -1100,7 +1415,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-12",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-037",
@@ -1131,7 +1455,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-13",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-038",
@@ -1162,7 +1495,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-13",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-039",
@@ -1193,7 +1535,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-13",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-040",
@@ -1224,7 +1575,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-14",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-041",
@@ -1255,7 +1615,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-14",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-042",
@@ -1286,7 +1655,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-14",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-043",
@@ -1317,7 +1695,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-15",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-044",
@@ -1348,7 +1735,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-15",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-045",
@@ -1375,7 +1771,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-15",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-046",
@@ -1406,7 +1811,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-16",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-047",
@@ -1437,7 +1851,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-16",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-048",
@@ -1468,7 +1891,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-16",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-049",
@@ -1499,7 +1931,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-17",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-050",
@@ -1530,7 +1971,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-17",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-051",
@@ -1561,7 +2011,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-17",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-052",
@@ -1592,7 +2051,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-18",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-053",
@@ -1623,7 +2091,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-18",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-054",
@@ -1654,7 +2131,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-18",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-055",
@@ -1685,7 +2171,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-19",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-056",
@@ -1712,7 +2207,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-19",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-057",
@@ -1743,7 +2247,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-19",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-058",
@@ -1774,7 +2287,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-20",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-059",
@@ -1805,7 +2327,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-20",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-060",
@@ -1836,7 +2367,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-20",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-061",
@@ -1867,7 +2407,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-21",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-062",
@@ -1898,7 +2447,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-21",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-063",
@@ -1929,7 +2487,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-21",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-064",
@@ -1960,7 +2527,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-22",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-065",
@@ -1991,7 +2567,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-22",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-066",
@@ -2022,7 +2607,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-22",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-067",
@@ -2049,7 +2643,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-23",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-068",
@@ -2080,7 +2683,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-23",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-069",
@@ -2111,7 +2723,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-23",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-070",
@@ -2142,7 +2763,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-24",
+        "direction": 90,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-071",
@@ -2173,7 +2803,16 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-24",
+        "direction": 0,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     },
     {
       "id": "ANALYSIS-072",
@@ -2204,8 +2843,187 @@
           "assessment": "Unresolved",
           "source": "Plume base not visible"
         }
-      ]
+      ],
+      "snapshot": {
+        "sessionId": "PREVIEW-SESSION-24",
+        "direction": null,
+        "imageUrl": null,
+        "analyses": null,
+        "analyzedAt": null,
+        "analysisMessage": null,
+        "followUp": null
+      }
     }
   ],
-  "incidents": []
+  "incidents": [],
+  "sessions": [
+    {
+      "id": "PREVIEW-SESSION-01",
+      "startedAt": "2026-08-13T03:10:00Z",
+      "endedAt": null,
+      "status": "active",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-02",
+      "startedAt": "2026-08-15T05:10:00Z",
+      "endedAt": "2026-08-17T07:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-03",
+      "startedAt": "2026-08-12T09:10:00Z",
+      "endedAt": "2026-08-18T08:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-04",
+      "startedAt": "2026-08-15T04:10:00Z",
+      "endedAt": "2026-08-16T05:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-05",
+      "startedAt": "2026-08-12T08:10:00Z",
+      "endedAt": "2026-08-18T07:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-06",
+      "startedAt": "2026-08-13T09:10:00Z",
+      "endedAt": "2026-08-15T03:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-07",
+      "startedAt": "2026-08-17T05:10:00Z",
+      "endedAt": "2026-08-18T06:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-08",
+      "startedAt": "2026-08-12T07:10:00Z",
+      "endedAt": "2026-08-14T09:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-09",
+      "startedAt": "2026-08-15T02:10:00Z",
+      "endedAt": "2026-08-17T04:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-10",
+      "startedAt": "2026-08-12T06:10:00Z",
+      "endedAt": "2026-08-13T07:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-11",
+      "startedAt": "2026-08-14T08:10:00Z",
+      "endedAt": "2026-08-16T02:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-12",
+      "startedAt": "2026-08-12T05:10:00Z",
+      "endedAt": "2026-08-18T04:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-13",
+      "startedAt": "2026-08-14T07:10:00Z",
+      "endedAt": "2026-08-15T08:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-14",
+      "startedAt": "2026-08-16T09:10:00Z",
+      "endedAt": "2026-08-18T03:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-15",
+      "startedAt": "2026-08-12T04:10:00Z",
+      "endedAt": "2026-08-14T06:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-16",
+      "startedAt": "2026-08-16T08:10:00Z",
+      "endedAt": "2026-08-17T09:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-17",
+      "startedAt": "2026-08-12T03:10:00Z",
+      "endedAt": "2026-08-18T02:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-18",
+      "startedAt": "2026-08-14T05:10:00Z",
+      "endedAt": "2026-08-16T07:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-19",
+      "startedAt": "2026-08-12T02:10:00Z",
+      "endedAt": "2026-08-18T09:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-20",
+      "startedAt": "2026-08-13T03:10:00Z",
+      "endedAt": "2026-08-15T05:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-21",
+      "startedAt": "2026-08-16T06:10:00Z",
+      "endedAt": "2026-08-18T08:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-22",
+      "startedAt": "2026-08-13T02:10:00Z",
+      "endedAt": "2026-08-14T03:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-23",
+      "startedAt": "2026-08-15T04:10:00Z",
+      "endedAt": "2026-08-17T06:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    },
+    {
+      "id": "PREVIEW-SESSION-24",
+      "startedAt": "2026-08-12T08:10:00Z",
+      "endedAt": "2026-08-18T07:10:00Z",
+      "status": "ended",
+      "checklistRevision": 0
+    }
+  ]
 }
