@@ -116,14 +116,6 @@ export function LandingMotion() {
               element.addEventListener("focusin", show);
               focusCleanups.push(() => element.removeEventListener("focusin", show));
             });
-            gsap.to(".bl-giant-wordmark", {
-              yPercent: -18, ease: "none",
-              scrollTrigger: { trigger: ".bl-product-stage", start: "top bottom", end: "bottom top", scrub: true },
-            });
-            gsap.fromTo(".bl-device-wrap", { y: 32 }, {
-              y: -48, ease: "none",
-              scrollTrigger: { trigger: ".bl-product-stage", start: "top bottom", end: "bottom top", scrub: true },
-            });
           });
           void document.fonts.ready.then(() => { if (!cancelled) ScrollTrigger.refresh(); });
           return () => {

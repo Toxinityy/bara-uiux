@@ -21,7 +21,21 @@ npm start
 
 The home route is `app/page.tsx`; its redesign is scoped in `app/landing.css`. Shared base styles remain in `app/globals.css` for the existing application. English copy and the labeled synthetic report `BARA-DEMO-0042` live in `lib/content.ts`. Exploration links use the real `#intelligence`, `#witness`, and `#how-it-works` sections. A separate Open Intelligence demo action uses the verified destination from `lib/destinations.ts`.
 
-Landing components live in `components/landing/`. Normal/Pro uses Radix tabs and a single synthetic sample. The Witness examples are read-only. The landing page self-hosts Inter variable (SIL Open Font License in `public/fonts/`) and uses GSAP core for short, one-time entrances. It has no continuous loops, scroll listeners, 3D renderer, or external media requests. Motion is skipped for reduced-motion and data-saver preferences; all content is visible before animation loads. Theme follows the device unless a light/dark preference is saved locally under `bara-landing-theme`. Theme and fonts are scoped to this page.
+Landing components live in `components/landing/`; the reusable parallax composition lives in `components/ui/parallax-scrolling.tsx`, with a usage example in `components/ui/demo.tsx`. The Witness examples are read-only. The landing page self-hosts Inter variable (SIL Open Font License in `public/fonts/`). GSAP ScrollTrigger drives section reveals and the layered BARA wordmark/phone between the opening copy and section 01. Lenis smooths wheel scrolling on the landing route; touch and keyboard scrolling remain native. Reduced-motion and data-saver preferences disable motion. Cleanup removes this component's ticker, scrolling instance, and triggers without affecting other animations. Theme follows the device unless a light/dark preference is saved locally under `bara-landing-theme`.
+
+## Component structure and optional Tailwind/shadcn setup
+
+TypeScript is already configured. Global styles are in `app/globals.css`, and the landing design is in `app/landing.css`. This component uses those existing styles, requires no props or provider, and reuses the local wordmark and Witness device rather than remote image layers. Its layout follows the landing page's desktop/mobile breakpoints. The supplied animation pattern is adapted from [Osmo](https://www.osmo.supply/).
+
+`components/ui/` is the conventional destination for copied shadcn components, keeping reusable UI separate from feature components. This repository does not currently use Tailwind or the shadcn CLI; neither is required by this plain-CSS component. To adopt them later, following the [shadcn installation guide](https://ui.shadcn.com/docs/installation/next):
+
+1. Run `npm install -D tailwindcss @tailwindcss/postcss`.
+2. Create `postcss.config.mjs` exporting `export default { plugins: { "@tailwindcss/postcss": {} } };`.
+3. Add `@import "tailwindcss";` at the beginning of `app/globals.css` (already imported by the layout). Check existing styles against Tailwind's base reset before shipping.
+4. Add `"paths": { "@/*": ["./*"] }` to `compilerOptions` in `tsconfig.json`.
+5. Run `npx shadcn@latest init`. Use `app/globals.css` for CSS, `@/components/ui` for UI components, and Lucide for icons. Review generated styles to preserve BARA's colors and type. For Tailwind v4, the Tailwind config path in `components.json` stays empty.
+
+The requested `@studio-freight/lenis` package is installed at 1.0.42. npm marks that package name deprecated in favor of `lenis`; this integration retains the requested import rather than migrating dependencies.
 
 The existing dashboard lives in `components/intelligence/`, with its original route-scoped styles in `app/intelligence/intelligence.css`. Its application code is unchanged by the landing redesign.
 

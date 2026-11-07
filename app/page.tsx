@@ -9,8 +9,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { ThemeControl, LandingMotion } from "../components/landing/experience";
-import { WitnessDevice } from "../components/landing/witness-device";
-import { BrandLogo } from "../components/landing/brand-logo";
+import { ParallaxComponent } from "../components/ui/parallax-scrolling";
+import { BrandLogo, BrandLogoFilters } from "../components/landing/brand-logo";
 import { copy } from "../lib/content";
 import { destinations } from "../lib/destinations";
 import "./landing.css";
@@ -35,7 +35,7 @@ function Explore({
   return (
     <a
       className={`bl-button ${quiet ? "bl-button-outline" : ""}`}
-      href={witness ? "#witness" : "#intelligence"}
+      href={witness ? destinations.witness.href : destinations.intelligence.href}
     >
       Explore {witness ? "Witness" : "Intelligence"}
       <ArrowUpRight size={18} aria-hidden="true" />
@@ -55,6 +55,7 @@ export default function Home() {
         Skip to content
       </a>
       <LandingMotion />
+      <BrandLogoFilters />
       <div className="bl-header-shell bl-dark">
         <header className="bl-header bl-container">
           <a className="bl-wordmark" href="#top" aria-label="BARA home">
@@ -96,22 +97,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="bl-product-stage">
-              <span className="bl-giant-wordmark" aria-hidden="true">
-                <BrandLogo large />
-              </span>
-              <div className="bl-stage-note bl-stage-left">
-                <span>01 — Witness</span>
-                <p>{copy.hero.stageLeft}</p>
-              </div>
-              <WitnessDevice />
-              <div className="bl-stage-note bl-stage-right">
-                <span>02 — Intelligence</span>
-                <p>{copy.hero.stageRight}</p>
-              </div>
-              <p className="bl-stage-caption">{copy.hero.caption}</p>
-            </div>
           </section>
+          <ParallaxComponent />
         </div>
         <div className="bl-main-sections">
           <section className="bl-editorial bl-dark">
@@ -149,7 +136,9 @@ export default function Home() {
                 alt="BARA Intelligence Normal dashboard: report filters, evidence summary, report list and observation map using synthetic demo data."
                 sizes="(max-width: 760px) 90vw, (max-width: 1568px) calc(100vw - 128px), 1440px"
               />
-              <figcaption>Intelligence / Normal view. Screenshot of synthetic demo data.</figcaption>
+              <figcaption>
+                Intelligence / Normal view. Screenshot of synthetic demo data.
+              </figcaption>
             </figure>
             {!destinations.intelligence.href.startsWith("#") && (
               <a
@@ -172,7 +161,9 @@ export default function Home() {
               <div className="bl-witness-grid">
                 <div className="bl-readonly-preview" data-reveal>
                   <div className="bl-form-header">
-                    <span className="bl-form-brand">BARA Witness</span>
+                    <span className="bl-form-brand">
+                      <BrandLogo /> Witness
+                    </span>
                     <span>Read-only example</span>
                   </div>
                   <div className="bl-form-body">

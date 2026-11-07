@@ -13,7 +13,8 @@ function project(latitude: number, longitude: number, zoom: number) {
   return { x: (longitude + 180) / 360 * scale, y: (0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI)) * scale };
 }
 
-export function ObservationMap({ reports, selectedIds, hoveredId, onHover, onSelect, viewport, setViewport }: {
+export function ObservationMap({ reports, selectedIds, hoveredId, onHover, onSelect, viewport, setViewport, pointsVisible = true }: {
+  pointsVisible?: boolean;
   hoveredId: string | null; onHover: (id: string | null) => void;
   reports: Report[]; selectedIds: string[]; onSelect: (id: string) => void;
   viewport: Viewport; setViewport: (viewport: Viewport) => void;
@@ -62,7 +63,7 @@ export function ObservationMap({ reports, selectedIds, hoveredId, onHover, onSel
       <div className="bi-map-caption"><span className="bi-dot" />{located.length} observation locations <span className="bi-map-gesture">Drag to explore</span></div>
       <div className="bi-map-tools"><button aria-label="Zoom in" disabled={viewport.zoom >= 12} onClick={() => setViewport({ ...viewport, zoom: viewport.zoom + 1 })}><Plus size={18} /></button><button aria-label="Zoom out" disabled={viewport.zoom <= 7} onClick={() => setViewport({ ...viewport, zoom: viewport.zoom - 1 })}><Minus size={18} /></button><button aria-label="Reset map view" onClick={() => setViewport(initialViewport)}><Crosshair size={18} /></button></div>
       <div className="bi-pan-tools"><button aria-label="Pan map north" onClick={() => pan(0, 1)}><ArrowUp size={14} /></button><button aria-label="Pan map west" onClick={() => pan(-1, 0)}><ArrowLeft size={14} /></button><button aria-label="Pan map south" onClick={() => pan(0, -1)}><ArrowDown size={14} /></button><button aria-label="Pan map east" onClick={() => pan(1, 0)}><ArrowRight size={14} /></button></div>
-      {located.map(report => {
+      {pointsVisible && located.map(report => {
         const p = displayPosition(report)!;
         const point = project(p.latitude, p.longitude, viewport.zoom);
         const selected = selectedIds.includes(report.id);
