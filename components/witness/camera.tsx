@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Camera, Check, ChevronRight, Compass, Info, MapPin, Maximize2, Minimize2, Settings2, ShieldCheck, Smartphone, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Camera, Compass, MapPin, Maximize2, Minimize2, Smartphone, X } from 'lucide-react';
 import { BrandLogo, BrandLogoFilters } from '../landing/brand-logo';
-import { captureBlock } from '../../lib/witness';
+import { captureBlock, witnessTopics } from '../../lib/witness';
 import { useDevices } from './use-devices';
 import { useSession } from './use-session';
 
@@ -14,17 +14,6 @@ const subscribeMobile = (callback: () => void) => {
   query.addEventListener('change', callback);
   return () => query.removeEventListener('change', callback);
 };
-const topics = [
-  { short: 'Flames', name: 'Visible flames', description: 'Whether identifiable flames are visible, not visible, or obscured.', limit: 'No visible flames in a photo does not establish that there is no fire.' },
-  { short: 'Smoke', name: 'Visible smoke', description: 'Whether smoke is visible and its apparent source can be seen.', limit: 'Smoke drifting through an image does not establish its source.' },
-  { short: 'Burning', name: 'What is burning', description: 'The visible material or object involved. Unknown is a valid finding.', limit: 'Suspected peat remains unconfirmed.' },
-  { short: 'Location', name: 'Source location', description: 'Where the suspected source is relative to the witness.', limit: 'Your GPS records your position, not the fire location.' },
-  { short: 'Time', name: 'Observation time', description: 'When the observation occurred and whether it describes the current situation.', limit: 'A capture timestamp alone does not answer every observation-time question.' },
-  { short: 'Change', name: 'Change over time', description: 'Changes supported by observations made at different times.', limit: 'One photo cannot establish change over time. Smoke drift is not flame movement.' },
-  { short: 'Threats', name: 'Immediate threats', description: 'Whether people, buildings, or roads are visibly affected.', limit: 'Information coverage is not a safety score or a measure of severity.' },
-];
-type Panel = 'controls' | 'guidance' | 'coverage' | number;
-
 export function WitnessCamera() {
   const mobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia(mobileQuery).matches, () => false);
   return <main className="bw"><BrandLogoFilters />{mobile ? <MobileCamera /> : <DesktopNotice />}</main>;
@@ -49,17 +38,39 @@ function DesktopNotice() {
   </div>;
 }
 
+function CriterionIndicator({ topic, selected, onSelect }: {
+  topic: ReturnType<typeof witnessTopics>[number];
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  const previous = useRef(topic.confirmed);
+  const [highlighted, setHighlighted] = useState(false);
+  useEffect(() => {
+    const newlyConfirmed = topic.confirmed && !previous.current;
+    previous.current = topic.confirmed;
+    if (!newlyConfirmed) return;
+    const show = window.setTimeout(() => setHighlighted(true), 0);
+    const collapse = window.setTimeout(() => setHighlighted(false), 4000);
+    return () => { window.clearTimeout(show); window.clearTimeout(collapse); };
+  }, [topic.confirmed]);
+  const expanded = topic.confirmed && highlighted;
+  return <button className={expanded ? 'is-newly-confirmed' : undefined} title={`${topic.name}: ${topic.label}`}
+    aria-label={`${topic.name}: ${topic.label}`} aria-expanded={selected} aria-controls={selected ? 'bw-topic-detail' : undefined} onClick={onSelect}>
+    <span className="bw-topic-label" aria-hidden="true">{topic.name} · Confirmed</span>
+    <span className="bw-topic-circle" data-confirmed={topic.confirmed} aria-hidden="true" />
+    <span className="bw-sr" role="status">{expanded ? `${topic.name} confirmed.` : ''}</span>
+  </button>;
+}
+
 function MobileCamera() {
   const { video, requestSensorPermissions, camera, location, heading, closeCamera, attachVideo, frameReady, cameraError, openCamera, locationStatus, locationOn, stopLocation, startLocation, compassStatus, compassOn, stopCompass, startCompass } = useDevices();
-  const { session, checking, busy, sending, message, guidance, toggleSession, capture } = useSession();
-  const sheet = useRef<HTMLDialogElement>(null);
+  const { session, checking, busy, sending, message, guidance, startSession, endSession, capture, skipRequest } = useSession();
   const shell = useRef<HTMLDivElement>(null);
-  const [panel, setPanel] = useState<Panel>('controls');
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [online, setOnline] = useState(() => navigator.onLine);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenAvailable] = useState(() => Boolean(document.fullscreenEnabled));
   const [notice, setNotice] = useState('');
-  const [sheetOpen, setSheetOpen] = useState(false);
 
   useEffect(() => {
     const connection = () => setOnline(navigator.onLine);
@@ -74,18 +85,14 @@ function MobileCamera() {
     };
   }, []);
 
-  function openPanel(next: Panel) {
-    setPanel(next);
-    setSheetOpen(true);
-    sheet.current?.showModal();
-  }
   function startCamera() {
+    if (checking || busy || sending || camera === 'loading' || !online) return;
     requestSensorPermissions();
     void openCamera();
+    void startSession();
   }
-  function changeSession() {
-    requestSensorPermissions();
-    void toggleSession();
+  async function finishSession() {
+    if (await endSession()) closeCamera();
   }
   function snap() {
     if (blocked || !video.current || !location || heading === null) return;
@@ -96,103 +103,63 @@ function MobileCamera() {
     });
   }
   const blocked = captureBlock(camera === 'ready', Boolean(location), heading !== null, online, session?.status === 'active', checking || busy || sending);
-  const selected = typeof panel === 'number' ? topics[panel] : null;
-  const direction = heading === null ? 'Direction off' : `${Math.round(heading) % 360}° ${['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.round(heading / 45) % 8]}`;
-  const panelTitle = selected?.name ?? (panel === 'controls' ? 'Camera controls' : panel === 'coverage' ? 'Observation coverage' : 'Camera instruction');
+  const direction = heading === null ? 'Compass' : `${Math.round(heading) % 360}°`;
+  const topics = witnessTopics(session?.checklist);
+  const selected = topics.find(topic => topic.key === selectedTopic);
+  const canSkip = session?.instruction?.status === 'ready' && Boolean(session.instruction.gapId)
+    && session.instruction.checklistRevision !== undefined && !session.instruction.gapId?.startsWith('camera_to_fire_distance.');
+  const sessionStatus = checking ? 'Checking session…' : busy ? 'Updating session…' : session ? 'Session active' : 'Witness';
+  const sensorHint = camera === 'ready' && session
+    ? !location ? locationStatus : heading === null ? compassStatus : ''
+    : '';
+  const hint = sending ? 'Saving snapshot…' : message || notice || (!online ? 'Offline. Reconnect to send photos.' : sensorHint || (camera === 'ready' ? blocked : ''));
 
   return <div className="bw-camera" ref={shell}>
     <header className="bw-header">
-      <div className="bw-identity"><BrandLogo /><span>Witness</span></div>
+      <span className="bw-session-status" role="status"><i data-active={Boolean(session)} />{sessionStatus}</span>
       <div className="bw-header-actions">
-        <button className="bw-icon-button" aria-label="Open Controls" aria-haspopup="dialog" aria-expanded={sheetOpen && panel === 'controls'} onClick={() => openPanel('controls')}><Settings2 size={21} /></button>
+        {session && <button className="bw-end-session" disabled={checking || busy || sending || !online} onClick={finishSession}>End session</button>}
+        {!session && camera === 'ready' && <button className="bw-end-session" disabled={checking || busy || sending || !online} onClick={() => { requestSensorPermissions(); void startSession(); }}>Retry session</button>}
         {fullscreenAvailable && <button className="bw-icon-button" aria-label={fullscreen ? 'Exit fullscreen' : 'Fullscreen'} onClick={async () => {
           try { if (document.fullscreenElement) await document.exitFullscreen(); else await shell.current?.requestFullscreen(); }
-          catch { setNotice('Fullscreen is unavailable. You can continue in this view.'); }
-        }}>{fullscreen ? <Minimize2 size={20} /> : <Maximize2 size={20} />}</button>}
-        {camera !== 'closed' ? <button className="bw-icon-button" aria-label="Close camera" onClick={closeCamera}><X size={21} /></button> : <Link className="bw-icon-button" href="/" aria-label="Back to BARA"><X size={21} /></Link>}
+          catch { setNotice('Fullscreen is unavailable.'); }
+        }}>{fullscreen ? <Minimize2 size={15} /> : <Maximize2 size={15} />}</button>}
+        {camera !== 'closed' ? <button className="bw-icon-button" aria-label="Close camera" onClick={closeCamera}><X size={17} /></button> : <Link className="bw-icon-button" href="/" aria-label="Back to BARA"><X size={17} /></Link>}
       </div>
     </header>
-    <div className="bw-session-bar"><span><i />{checking ? 'Checking session…' : session ? 'Session active' : 'No active session'}</span><button onClick={() => openPanel('controls')}>{session ? 'End session' : 'Start session'}<Info size={14} /></button></div>
 
     <div className="bw-viewfinder">
       <video ref={attachVideo} autoPlay playsInline muted onLoadedData={frameReady} onPlaying={frameReady} aria-label="Live camera preview" className={camera === 'ready' ? 'bw-video is-ready' : 'bw-video'} />
       <div className="bw-aiming">
-      <div className="bw-preview-status">
-        {camera === 'ready' && <span className="bw-live">Live camera</span>}
-        <button className="bw-coverage" aria-label="0 of 7 topics have information" aria-haspopup="dialog" onClick={() => openPanel('coverage')}><span>0 of 7 topics</span><ChevronRight size={16} /></button>
+        {camera !== 'ready' && <div className="bw-camera-empty" data-state={camera}>
+          <Camera size={28} strokeWidth={1.5} />
+          <h1>{camera === 'loading' ? 'Opening camera…' : camera === 'error' ? 'Camera unavailable' : 'Your perspective matters.'}</h1>
+          <p>{camera === 'error' ? cameraError : camera === 'loading' ? 'Allow camera access when your browser asks.' : 'Document what you can see, from where you are.'}</p>
+          {camera !== 'loading' && <button className="bw-primary" disabled={checking || busy || sending || !online} onClick={startCamera}><Camera size={17} />{camera === 'error' ? 'Retry camera' : 'Open camera'}</button>}
+          <span className="bw-private">Opening the camera starts your observation session.</span>
+        </div>}
+        <nav className="bw-topic-rail" aria-label="Observation topics">
+          {topics.map(topic => <CriterionIndicator key={`${session?.id ?? 'setup'}:${topic.key}`} topic={topic}
+            selected={selectedTopic === topic.key} onSelect={() => setSelectedTopic(selectedTopic === topic.key ? null : topic.key)} />)}
+        </nav>
+        {selected && <aside className="bw-topic-detail" id="bw-topic-detail" aria-label={selected.name}>
+          <div><h2>{selected.name}</h2><button className="bw-icon-button" aria-label="Close topic details" onClick={() => setSelectedTopic(null)}><X size={16} /></button></div>
+          <p>{selected.description}</p><span>{selected.label}</span>
+        </aside>}
       </div>
-      {camera !== 'ready' && <div className="bw-camera-empty" data-state={camera}>
-        <Camera size={32} strokeWidth={1.5} />
-        <h1>{camera === 'loading' ? 'Opening camera…' : camera === 'error' ? 'Camera unavailable' : 'Your perspective matters.'}</h1>
-        <p>{camera === 'error' ? cameraError : camera === 'loading' ? 'Allow camera access when your browser asks.' : 'Document what you can see, from where you are.'}</p>
-        {camera !== 'loading' && <button className="bw-primary" onClick={startCamera}><Camera size={18} />{camera === 'error' ? 'Retry camera' : 'Open camera'}</button>}
-        <span className="bw-private">{camera === 'loading' ? 'You can close the camera at any time.' : 'Camera access starts only when you allow it.'}</span>
-      </div>}
-      <nav className="bw-topic-rail" aria-label="Observation topics">
-        {topics.map((topic, index) => <button key={topic.short} aria-label={`${topic.name}: not assessed`} aria-haspopup="dialog" onClick={() => openPanel(index)}>
-          <span className="bw-topic-circle" aria-hidden="true" /><span>{topic.short}</span>
-        </button>)}
-      </nav>
-      </div>
-      <section className="bw-guidance" aria-labelledby="bw-guidance-title">
-        <div><h2 id="bw-guidance-title">Camera instruction</h2><button aria-label="Camera instruction details" onClick={() => openPanel('guidance')}><Info size={18} /></button></div>
-        <p role="status" style={{ whiteSpace: 'pre-line' }}>{guidance || 'Camera guidance will appear here.'}</p>
-      </section>
+      {guidance && <section className="bw-guidance" aria-label="Camera instruction">
+        <div className="bw-guidance-heading"><h2>Camera instruction</h2>{canSkip && <button className="bw-skip-request" disabled={checking || busy || sending || !online} onClick={skipRequest}>Skip request</button>}</div>
+        <p role="status">{guidance}</p>
+      </section>}
     </div>
 
-    <div className="bw-bottom">
-      <div className="bw-capture">
-        <p id="bw-capture-block" role="status">{sending ? 'Saving snapshot…' : blocked || 'Ready to capture.'}</p>
-        <div className="bw-shutter-row">
-          <button className="bw-sensor" onClick={() => openPanel('controls')}><MapPin size={19} /><span>{location ? 'Location on' : locationOn ? 'Locating…' : 'Location off'}</span></button>
-          <button className="bw-shutter" disabled={Boolean(blocked)} onClick={snap} aria-describedby="bw-capture-block" aria-label="Snap" aria-busy={sending}><Camera size={26} /><span>{sending ? 'Sending…' : 'Snap'}</span></button>
-          <button className="bw-sensor" onClick={() => openPanel('controls')}><Compass size={19} /><span>{direction}</span></button>
-        </div>
-        <div className="bw-safety"><ShieldCheck size={15} /><span>Stay back. Observe from a safe position.</span></div>
-        {(!online || notice) && <p className="bw-notice" role="status">{!online ? 'Offline — submission and live guidance are unavailable.' : notice}</p>}
+    <footer className="bw-bottom">
+      <div className="bw-shutter-row">
+        <button className="bw-sensor" title={locationStatus} aria-label={locationOn ? 'Stop GPS' : 'Enable GPS'} aria-pressed={locationOn} onClick={locationOn ? stopLocation : startLocation}><MapPin size={16} /><span>{location ? 'GPS on' : locationOn ? 'Locating…' : 'GPS off'}</span></button>
+        <button className="bw-shutter" disabled={Boolean(blocked)} onClick={snap} aria-describedby="bw-capture-block" aria-label="Snap" aria-busy={sending}><Camera size={22} /><span>{sending ? 'Sending…' : 'Snap'}</span></button>
+        <button className="bw-sensor" title={compassStatus} aria-label={compassOn ? 'Stop compass' : 'Enable compass'} aria-pressed={compassOn} onClick={compassOn ? stopCompass : startCompass}><Compass size={16} /><span>{direction}</span></button>
       </div>
-    </div>
-
-    <dialog className="bw-sheet" ref={sheet} aria-labelledby="bw-sheet-title" onClose={() => setSheetOpen(false)} onClick={event => { if (event.target === sheet.current) sheet.current.close(); }}>
-      <div className="bw-sheet-inner">
-        <header><h2 id="bw-sheet-title">{panelTitle}</h2><button autoFocus className="bw-icon-button" aria-label="Close details" onClick={() => sheet.current?.close()}><X size={22} /></button></header>
-        {panel === 'controls' && <>
-          <p className="bw-preview-note">Start a session, open the camera, and capture what you can see. Location and compass start automatically when supported and permitted.</p>
-          <section className="bw-control-group"><h3>Session</h3><p>{checking ? 'Checking session…' : session ? 'Session active' : 'No active session'}</p>
-            <button className="bw-secondary" disabled={checking || busy || sending || !online} onClick={changeSession}>{busy ? 'Please wait…' : session ? 'End session' : 'Start session'}<ArrowUpRight size={16} /></button>
-            {message && <p role="status" className="bw-service-message">{message}</p>}
-          </section>
-          <section className="bw-control-group"><h3>Camera</h3><p>{camera === 'ready' ? 'Camera on · full frame shown' : camera === 'error' ? cameraError : camera === 'loading' ? 'Waiting for camera access…' : 'Camera closed'}</p>
-            <button className="bw-secondary" onClick={camera === 'ready' || camera === 'loading' ? closeCamera : startCamera}>{camera === 'ready' || camera === 'loading' ? 'Close camera' : camera === 'error' ? 'Retry camera' : 'Open camera'}<Camera size={16} /></button>
-          </section>
-          <section className="bw-control-group"><h3>Witness location</h3><p>{locationStatus}</p>
-            {location && <p className="bw-numeric">{location.latitude.toFixed(5)}, {location.longitude.toFixed(5)} · ±{Math.round(location.accuracy)} m</p>}
-            <button className="bw-secondary" onClick={locationOn ? stopLocation : startLocation}>{locationOn ? 'Stop location' : 'Enable location'}<MapPin size={16} /></button>
-            <p className="bw-control-help">Your position is not the suspected source location.</p>
-          </section>
-          <section className="bw-control-group"><h3>Compass</h3><p>{compassStatus}{heading !== null ? ` · ${direction}` : ''}</p>
-            <button className="bw-secondary" onClick={compassOn ? stopCompass : startCompass}>{compassOn ? 'Stop compass' : 'Start compass'}<Compass size={16} /></button>
-          </section>
-          <p className="bw-control-help">Closing the camera releases camera access. Location and compass have separate stop controls. Leaving this page stops all three.</p>
-        </>}
-        {selected && <>
-          <span className="bw-unknown"><span className="bw-topic-circle" />Not assessed</span>
-          <p>{selected.description}</p>
-          <dl className="bw-evidence"><div><dt>Session finding</dt><dd>No assessment available in this view</dd></div><div><dt>Supporting photos</dt><dd>See Intelligence for submitted photos</dd></div><div><dt>Assessment time</dt><dd>Not available in this view</dd></div></dl>
-          <p>{selected.limit}</p>
-          <p className="bw-preview-note">Coverage changes only when assessed evidence is received. You cannot mark a topic complete yourself.</p>
-        </>}
-        {panel === 'coverage' && <>
-          <p>0 of 7 topics have information.</p><p>This checklist describes session-level information coverage, not safety or fire severity.</p>
-          <ul className="bw-legend"><li><span className="bw-topic-circle" />Not assessed</li><li><span className="bw-topic-circle is-partial" />Needs more information</li><li><span className="bw-topic-circle is-complete"><Check size={17} /></span>Information available</li><li><span className="bw-topic-circle is-current" />Current instruction topic</li></ul>
-          <p>An instruction ring is separate from coverage. A successful upload alone never completes a topic.</p>
-        </>}
-        {panel === 'guidance' && <>
-          <p style={{ whiteSpace: 'pre-line' }}>{guidance || 'Camera guidance will appear here after a snapshot is submitted.'}</p><p>The guidance service supplies instructions on where to point your camera from your current position.</p>
-          <p>Guidance is not required for capture once session and device setup are complete.</p>
-          <button className="bw-secondary" disabled>Can’t get this view</button><p className="bw-control-help">Available when an active instruction is received and feedback is connected.</p>
-        </>}
-      </div>
-    </dialog>
+      <p id="bw-capture-block" role="status" className={hint ? 'bw-notice' : 'bw-sr'}>{hint || blocked || 'Ready to capture.'}</p>
+    </footer>
   </div>;
 }

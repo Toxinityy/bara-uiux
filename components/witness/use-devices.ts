@@ -126,7 +126,7 @@ export function useDevices() {
       compassPermissionPending.current = true;
       setCompassOn(false);
       setCompassStatus(error instanceof DOMException && error.name === 'NotAllowedError'
-        ? 'Tap Open camera, Start session, or Start compass to allow compass access.'
+        ? 'Tap Open camera or the compass to allow direction access.'
         : error instanceof Error ? error.message : 'Compass access failed. Please try again.');
     }
   }, [stopCompass]);

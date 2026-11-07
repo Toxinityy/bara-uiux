@@ -1,9 +1,13 @@
+export type WitnessInstruction = { status: string; witnessMessage?: string; gapId?: string; checklistRevision?: number };
+export type WitnessChecklist = { items: { criterionKey: string; criterionName: string; status: 'resolved' | 'uncertain' | 'unavailable' }[] };
 export type WitnessSession = {
   id: string;
   status: 'active' | 'ended';
   startedAt: string;
   endedAt?: string | null;
-  instruction?: { status: string; witnessMessage?: string };
+  instruction?: WitnessInstruction;
+  checklist?: WitnessChecklist;
+  checklistRevision?: number;
 };
 
 export type SnapshotMetadata = {
@@ -36,11 +40,24 @@ async function request(path: string, options: RequestInit = {}) {
 export async function sessionRequest(path = '', method: 'GET' | 'POST' = 'POST', signal?: AbortSignal): Promise<WitnessSession> {
   const timeout = AbortSignal.timeout(15000);
   const body = await request(`/sessions${path}`, { method, signal: signal ? AbortSignal.any([signal, timeout]) : timeout });
+  return readSession(body);
+}
+
+function readSession(body: { data?: WitnessSession } | null): WitnessSession {
   const session = body?.data;
   if (!session || !/^[a-f\d]{24}$/i.test(session.id) || !['active', 'ended'].includes(session.status)) {
     throw new Error('The backend returned an invalid session. Please check the session again.');
   }
   return session;
+}
+
+export async function rejectInstruction(id: string, instruction: WitnessInstruction): Promise<WitnessSession> {
+  const body = await request(`/sessions/${id}/instruction/reject`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gapId: instruction.gapId, checklistRevision: instruction.checklistRevision }),
+    signal: AbortSignal.timeout(30000),
+  });
+  return readSession(body);
 }
 
 export async function captureSnapshot(video: HTMLVideoElement, metadata: SnapshotMetadata): Promise<FormData> {
@@ -65,13 +82,16 @@ export async function captureSnapshot(video: HTMLVideoElement, metadata: Snapsho
 }
 
 export function instructionMessage(instruction?: WitnessSession['instruction']): string | null {
+  if (instruction?.gapId?.startsWith('camera_to_fire_distance.') || /\bdistance\b|\bhow far\b/i.test(instruction?.witnessMessage ?? '')) return null;
   if (instruction?.status === 'ready' && instruction.witnessMessage) return instruction.witnessMessage;
   if (instruction?.status === 'not_needed') return 'Snapshot saved. No additional information is requested right now.';
   return null;
 }
 
-export async function sendSnapshot(form: FormData, signal?: AbortSignal): Promise<string> {
+export async function sendSnapshot(form: FormData, signal?: AbortSignal): Promise<{ message: string; checklist?: WitnessChecklist; checklistRevision?: number; instruction?: WitnessInstruction }> {
   const body = await request('/snapshots', { method: 'POST', body: form, signal: signal ?? AbortSignal.timeout(100000) });
   if (!body?.data?.id) throw new Error('The backend did not confirm the snapshot. Check the session before trying again.');
-  return instructionMessage(body.instruction) ?? (typeof body.message === 'string' ? body.message : 'Snapshot saved. The next request is temporarily unavailable.');
+  const fallback = typeof body.message === 'string' && !/\bdistance\b|\bhow far\b/i.test(body.message) ? body.message : 'Snapshot saved. No additional request right now.';
+  return { message: instructionMessage(body.instruction) ?? fallback,
+    checklist: body.checklist, checklistRevision: body.checklistRevision, instruction: body.instruction };
 }

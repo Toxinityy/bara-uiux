@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sessionRequest, captureSnapshot, sendSnapshot, WitnessApiError } from '../lib/witness-api.ts';
+import { sessionRequest, captureSnapshot, sendSnapshot, rejectInstruction, instructionMessage, WitnessApiError } from '../lib/witness-api.ts';
 
 const id = '0123456789abcdef01234567';
 
@@ -59,9 +59,29 @@ test('photo upload preserves multipart data, shows returned instructions, and re
     assert.equal(options.headers, undefined); // Browser must add the multipart boundary.
     return Response.json({ data: { id }, instruction: { status: 'ready', witnessMessage: 'Show the source from this position.' } });
   });
-  assert.equal(await sendSnapshot(form), 'Show the source from this position.');
+  assert.equal((await sendSnapshot(form)).message, 'Show the source from this position.');
   fetch.mock.mockImplementation(async () => Response.json({ message: 'Image storage unavailable; snapshot was not saved' }, { status: 503 }));
   await assert.rejects(sendSnapshot(form), /not saved/i);
   fetch.mock.mockImplementation(async () => Response.json({ message: 'No confirmation' }));
   await assert.rejects(sendSnapshot(form), /did not confirm/i);
+});
+
+test('skip submits the current request and revision without a reason or confirmation step', async t => {
+  t.mock.method(globalThis, 'fetch', async (path, options) => {
+    assert.equal(path, `/api/backend/sessions/${id}/instruction/reject`);
+    assert.deepEqual(JSON.parse(options.body), { gapId: 'visible_flames.classification', checklistRevision: 4 });
+    return Response.json({ data: { id, status: 'active', checklistRevision: 5, instruction: { status: 'not_needed', checklistRevision: 5 } } });
+  });
+  assert.equal((await rejectInstruction(id, { status: 'ready', gapId: 'visible_flames.classification', checklistRevision: 4 })).checklistRevision, 5);
+});
+
+test('distance requests are hidden when restoring a legacy session or returning an upload result', async t => {
+  const instruction = { status: 'ready', gapId: 'camera_to_fire_distance.measuredReference', witnessMessage: 'Share an already-known distance to the fire.' };
+  assert.equal(instructionMessage(instruction), null);
+  t.mock.method(globalThis, 'fetch', async () => Response.json({ data: { id }, instruction, message: instruction.witnessMessage,
+    checklistRevision: 7, checklist: { items: [{ criterionKey: 'visible_flames', criterionName: 'Flames', status: 'resolved' }] } }));
+  const result = await sendSnapshot(new FormData());
+  assert.doesNotMatch(result.message, /distance/i);
+  assert.equal(result.checklistRevision, 7);
+  assert.equal(result.checklist.items[0].status, 'resolved');
 });
