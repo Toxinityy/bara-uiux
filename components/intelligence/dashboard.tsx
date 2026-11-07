@@ -1,15 +1,21 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, ChevronRight, CircleHelp, FileText, Layers3, MapPin, MapPinOff, RefreshCw, Search, ShieldCheck, SlidersHorizontal, X, Info, Clock3 } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ChevronRight, FileText, Layers3, MapPin, MapPinOff, RefreshCw, Search, ShieldCheck, SlidersHorizontal, X, Info, Clock3 } from 'lucide-react';
 import { displayPosition, filterReports, formatTime, loadIntelligence, matchingIncidents, parseFilters, situationSummary, validateDataset, type Dataset, type Filters, type Report } from '../../lib/intelligence';
 import { initialViewport, ObservationMap, type Viewport } from './observation-map';
 
 import { Investigation } from './investigation';
 import { applyDemoActions, needsReassessment, type DemoAction } from '../../lib/investigation';
 
+const phoneQuery = '(max-width: 767px), (pointer: coarse) and (max-height: 500px)';
+function subscribePhone(callback: () => void) {
+  const media = window.matchMedia(phoneQuery);
+  media.addEventListener('change', callback);
+  return () => media.removeEventListener('change', callback);
+}
 const defaultFilters: Filters = { area: 'all', period: 'all', search: '' };
 
 export function IntelligenceDashboard() {
@@ -23,7 +29,9 @@ export function IntelligenceDashboard() {
   const [undated, setUndated] = useState(true);
   const [density, setDensity] = useState(false);
   const [radius, setRadius] = useState(35);
-  const [mode, setMode] = useState('normal');
+  const [requestedMode, setMode] = useState('normal');
+  const phone = useSyncExternalStore(subscribePhone, () => window.matchMedia(phoneQuery).matches, () => true);
+  const mode = phone ? 'normal' : requestedMode;
   const [actions, setActions] = useState<DemoAction[]>([]);
   const [missingLocation, setMissingLocation] = useState(false);
   const [points, setPoints] = useState(true);
@@ -34,6 +42,7 @@ export function IntelligenceDashboard() {
   const [selectedIncident, setSelectedIncident] = useState<string | null>(null);
   const [viewport, setViewport] = useState<Viewport>(initialViewport);
   const [listView, setListView] = useState('reports');
+  const [floatingPanel, setFloatingPanel] = useState('reports');
   const [mapFocus, setMapFocus] = useState(false);
   const [hoveredReport, setHoveredReport] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -99,7 +108,7 @@ export function IntelligenceDashboard() {
       const panel = drawer.current;
       if (!panel) return;
       panel.close();
-      if (!query.matches && mode === 'pro') panel.show();
+      if (mode === 'pro') panel.show();
     };
     sync();
     query.addEventListener('change', sync);
@@ -125,6 +134,21 @@ export function IntelligenceDashboard() {
   const selectedIds = selectedReport ? [selectedReport] : incident?.reportIds ?? [];
   const excludedUnknown = data?.reports.filter(r => !r.area).length ?? 0;
   const pending = loading && !data;
+  const activeFilters = [
+    ...(filters.area !== 'all' ? [{ label: filters.area, clear: () => setFilters({ ...filters, area: 'all' }) }] : []),
+    ...(filters.period !== 'all' ? [{ label: filters.period === '24h' ? 'Received: last 24 hours' : 'Received: last 7 days', clear: () => setFilters({ ...filters, period: 'all' }) }] : []),
+    ...(filters.search ? [{ label: `Search: ${filters.search}`, clear: () => setFilters({ ...filters, search: '' }) }] : []),
+    ...(missingLocation ? [{ label: 'Missing location', clear: () => setMissingLocation(false) }] : []),
+    ...(spatial !== null ? [{ label: `${spatial.length} spatially selected`, clear: () => setSpatial(null) }] : []),
+    ...(after || before ? [{ label: `${timeField === 'observedAt' ? 'Observed' : 'Received'}: ${after || 'any date'} to ${before || 'any date'} (UTC)${timeField === 'observedAt' ? undated ? '; including undated' : '; excluding undated' : ''}`, clear: () => { setAfter(''); setBefore(''); } }] : []),
+  ];
+  function clearFilters() {
+    setFilters(defaultFilters); setMissingLocation(false); setSpatial(null); setAfter(''); setBefore('');
+  }
+  function closeWindow() {
+    document.querySelector<HTMLButtonElement>(`.pro-window-bar button[data-panel-button="${floatingPanel}"]`)?.focus();
+    setFloatingPanel('');
+  }
 
   function selectReport(id: string) {
     selectionTrigger.current = document.activeElement as HTMLElement;
@@ -150,31 +174,36 @@ export function IntelligenceDashboard() {
     void refresh();
   }
 
-  return <div className={`bi-app${mode === 'pro' ? ' bi-pro' : ''}${mapFocus ? ' bi-exploring' : ''}`} onKeyDown={event => { if (event.key === 'Escape') { if (selectedReport || selectedIncident) closeDetails(); else setMapFocus(false); } }}>
+  return <div data-panel={floatingPanel} className={`bi-app${mode === 'pro' ? ' bi-pro' : ''}${mapFocus ? ' bi-exploring' : ''}`} onKeyDown={event => { if (event.key === 'Escape' && !(event.target instanceof Element && event.target.closest('select'))) { if (mapFocus) setMapFocus(false); else if (selectedReport || selectedIncident) closeDetails(); else closeWindow(); } }}>
     <a className="skip-link" href="#intelligence-main">Skip to workspace</a>
     <header className="bi-header">
       <Link href="/" className="bi-brand" aria-label="BARA home"><span className="wordmark">BARA<span>.</span></span><span className="bi-brand-divider" /><span>Intelligence</span></Link>
-      <div className="bi-mode" role="group" aria-label="Level of detail"><button aria-pressed={mode === 'normal'} onClick={() => setMode('normal')}>Normal</button><button aria-pressed={mode === 'pro'} onClick={() => setMode('pro')}>Pro</button></div>
+      <div className="bi-mode" role="group" aria-label="Level of detail"><button aria-pressed={mode === 'normal'} onClick={() => setMode('normal')}>Normal</button>{!phone && <button aria-pressed={mode === 'pro'} onClick={() => setMode('pro')}>Pro</button>}</div>
       <div className="bi-header-right"><span className="bi-demo-badge"><span /> Demo data</span><Link href="/"><ArrowUpRight size={15} aria-hidden="true" /> Back to BARA</Link></div>
     </header>
 
     <main id="intelligence-main" className="bi-main">
       <div className="bi-page-heading"><div><h1>{mode === 'pro' ? 'Investigation workspace' : 'Understand your area'}</h1><p>{mode === 'pro' ? 'Explore observations across space and time. Inspect the evidence behind each pattern.' : 'See what people reported, what is supported, and what remains unknown.'}</p></div><button className="bi-button" disabled={loading} onClick={refreshFromControl}><RefreshCw size={15} className={loading ? 'bi-spinning' : ''} aria-hidden="true" />{loading ? 'Refreshing…' : 'Refresh'}</button></div>
+      {phone && requestedMode === 'pro' && <p className="bi-notice" role="status">You are using the simple Normal view. Pro is available on tablets and computers.</p>}
       {modeNotice && <div className="bi-notice" role="status"><Info size={16} />{modeNotice}<button aria-label="Dismiss mode message" onClick={() => setModeNotice('')}><X size={15} /></button></div>}
 
-      <div className="analysis-source"><label>Dataset <select value={scenario ? 'analysis' : 'original'} onChange={e => void switchScenario(e.target.value === 'analysis')}><option value="original">Original demo / 8 reports</option><option value="analysis">Synthetic analysis scenario / 72 reports</option></select></label><span>{scenario ? 'Authored spatial patterns. Not real incidents; source independence unknown.' : 'Illustrative reports, not live conditions.'}</span></div>
-      <div className="bi-filters" aria-label="Filter reports">
-        <label htmlFor="intelligence-area"><span><MapPin size={13} aria-hidden="true" /> Area</span><select id="intelligence-area" aria-label="Area" value={filters.area} disabled={!data} onChange={e => setFilters({ ...filters, area: e.target.value })}><option value="all">All areas</option>{areas.map(area => <option key={area}>{area}</option>)}</select></label>
-        <label><span><Clock3 size={13} aria-hidden="true" /> Reports received</span><select aria-label="Reports received" value={filters.period} disabled={!data} onChange={e => setFilters({ ...filters, period: e.target.value as Filters['period'] })}><option value="all">All available</option><option value="24h">Last 24 hours</option><option value="7d">Last 7 days</option></select></label>
-        <label className="bi-search"><span>Search reports</span><div><Search size={17} aria-hidden="true" /><input aria-label="Search reports" type="search" placeholder="Search by ID, description or area…" value={filters.search} maxLength={240} disabled={!data} onChange={e => setFilters({ ...filters, search: e.target.value })} /></div></label>
-      </div>
-
-      {(mode === 'pro' || actions.length > 0) && <div className="pro-session" role="status"><span>Demo changes - reset on reload. {actions.length} local actions.</span>{actions.length > 0 && <button className="bi-button" onClick={() => { if (window.confirm('Reset all demo grouping and review changes?')) setActions([]); }}>Reset demo</button>}</div>}
-      {(mode === 'pro' || missingLocation) && <div className="pro-filter"><button className="bi-button" aria-pressed={missingLocation} onClick={() => setMissingLocation(!missingLocation)}>{missingLocation ? 'Missing display location / Remove filter' : 'Filter: missing display location'}</button></div>}
-      <div className="bi-source-note"><Info size={14} aria-hidden="true" /><p>Synthetic examples, not live fire information.{data && <> Demo reference: <strong>{formatTime(data.referenceTime)}</strong>. All times in WIB.</>}</p></div>
-      {filters.area !== 'all' && excludedUnknown > 0 && <p className="bi-exclusion">{excludedUnknown} {excludedUnknown === 1 ? 'report with an unknown area is' : 'reports with unknown areas are'} excluded by this area filter. Reports labeled {filters.area} remain included even without coordinates.</p>}
-      {error && <div className="bi-error" role="alert"><CircleHelp size={20} /><div><strong>Couldn’t refresh the reports</strong><p>{error} {data ? 'The last successful dataset remains visible.' : 'Check your connection and try again.'}</p></div><button className="bi-button" disabled={loading} onClick={refreshFromControl}>Try again</button></div>}
-
+      {mode === 'pro' && <nav className="pro-window-bar" aria-label="Map workspace panels">{['reports', 'filters', 'layers', 'timeline', 'table', 'environment'].map(panel => <button key={panel} data-panel-button={panel} className="bi-button" aria-pressed={!mapFocus && floatingPanel === panel} onClick={() => { setMapFocus(false); setFloatingPanel(floatingPanel === panel ? '' : panel); }}>{panel === 'table' ? 'Data table' : panel === 'filters' ? `Filters${activeFilters.length ? ` (${activeFilters.length})` : ''}` : panel[0].toUpperCase() + panel.slice(1)}</button>)}<button className="bi-button" aria-pressed={mapFocus} onClick={() => setMapFocus(!mapFocus)}>{mapFocus ? 'Restore windows' : 'Expand map'}</button><span>{reports.length} reports / {unlocated} unlocated {scenario ? '/ Analysis scenario' : '/ Original demo'}{(after || before || spatial !== null || missingLocation || filters.area !== 'all' || filters.period !== 'all' || filters.search) ? ' / Filters active' : ''}</span></nav>}
+      <section className="pro-query-window" aria-label="Report filters">
+        {mode === 'pro' && <header className="workspace-panel-title"><div><h2>Filter reports</h2><p>Narrow the observations on your map.</p></div><button className="bi-icon-button" aria-label="Close filters" onClick={closeWindow}><X size={17} /></button></header>}
+        <div className="bi-filters" aria-label="Filter reports">
+          <label className="bi-search"><span>Search reports</span><div><Search size={17} aria-hidden="true" /><input aria-label="Search reports" type="search" placeholder="Report ID, description or area" value={filters.search} maxLength={240} disabled={!data} onChange={e => setFilters({ ...filters, search: e.target.value })} /></div></label>
+          <label htmlFor="intelligence-area"><span><MapPin size={14} aria-hidden="true" /> Area</span><select id="intelligence-area" aria-label="Area" value={filters.area} disabled={!data} onChange={e => setFilters({ ...filters, area: e.target.value })}><option value="all">All areas</option>{areas.map(area => <option key={area}>{area}</option>)}</select></label>
+          <label><span><Clock3 size={14} aria-hidden="true" /> Reports received</span><select aria-label="Reports received" value={filters.period} disabled={!data} onChange={e => setFilters({ ...filters, period: e.target.value as Filters['period'] })}><option value="all">Any time</option><option value="24h">Last 24 hours</option><option value="7d">Last 7 days</option></select></label>
+        </div>
+        {mode === 'pro' && <label className="filter-location-toggle"><span><MapPinOff size={17} aria-hidden="true" /><span>Missing location<small>Only reports without a usable map position</small></span></span><input type="checkbox" checked={missingLocation} onChange={e => setMissingLocation(e.target.checked)} /></label>}
+        {activeFilters.length > 0 && <div className="filter-chips" aria-label="Active filters">{activeFilters.map(f => <button key={f.label} onClick={f.clear} aria-label={`Remove filter: ${f.label}`}>{f.label}<X size={13} aria-hidden="true" /></button>)}</div>}
+        {mode === 'pro' && <div className="filter-result-line"><span role="status"><strong>{reports.length}</strong> matching reports</span><button className="filter-reset" disabled={!activeFilters.length} onClick={clearFilters}>Reset filters</button></div>}
+        <details className="dataset-details"><summary>{scenario ? 'Analysis demo / 72 reports' : 'Demo dataset / 8 reports'}<span>Data settings</span></summary><div className="analysis-source"><label>Dataset<select value={scenario ? 'analysis' : 'original'} onChange={e => void switchScenario(e.target.value === 'analysis')}><option value="original">Original demo / 8 reports</option><option value="analysis">Analysis scenario / 72 reports</option></select></label><p>Synthetic examples, not live fire information. {data && <>Reference: {formatTime(data.referenceTime)}.</>}</p></div>
+        </details>
+        {actions.length > 0 && <div className="pro-session" role="status"><span>{actions.length} demo actions. Reset on reload.</span><button className="bi-button" onClick={() => { if (window.confirm('Reset all demo grouping and review changes?')) setActions([]); }}>Reset demo</button></div>}
+        {filters.area !== 'all' && excludedUnknown > 0 && <p className="bi-exclusion">{excludedUnknown} {excludedUnknown === 1 ? 'report with an unknown area excluded.' : 'reports with unknown areas excluded.'}</p>}
+        {error && <div className="bi-error" role="alert"><p>{error} {data ? 'Last loaded records are retained.' : 'Check your connection and try again.'}</p><button className="bi-button" disabled={loading} onClick={refreshFromControl}>Try again</button></div>}
+      </section>
       <section className="bi-situation" aria-labelledby="situation-title" aria-busy={pending}>
         <div className="bi-situation-icon"><ShieldCheck size={23} strokeWidth={1.6} /></div><div><h2 id="situation-title">What the records tell us</h2><p className="bi-summary-text">{pending ? 'Loading the available reports…' : !data ? 'Reports are not available yet.' : summary.text}</p><p>{data ? summary.unknown : 'Evidence and summary counts will appear when the data loads.'}</p>{data && summary.sources.length > 0 && <div className="bi-summary-sources"><span>Based on</span>{summary.sources.slice(0, 3).map(id => <button key={id} onClick={() => selectReport(id)}>{id}<ArrowUpRight size={11} aria-hidden="true" /></button>)}{summary.sources.length > 3 && <span>and {summary.sources.length - 3} more in the list</span>}</div>}</div>
       </section>
@@ -183,7 +212,7 @@ export function IntelligenceDashboard() {
         {[{ label: 'Reports', count: reports.length, description: 'Received in this selection', Icon: FileText }, { label: 'Provisional incidents', count: incidents.length, description: 'Existing groups linked to these reports', Icon: Layers3 }, { label: 'Not shown on map', count: unlocated, description: 'No authorized, usable display position', Icon: MapPinOff }].map(({ label, count, description, Icon }) => <div className="bi-stat" key={label}><div><span>{label}</span><Icon size={18} strokeWidth={1.5} aria-hidden="true" /></div><strong>{data ? count.toString().padStart(2, '0') : '—'}</strong><p>{description}</p></div>)}
       </section>
 
-      {(mode === 'pro' || after || before || spatial !== null) && <section className="analysis-controls" aria-label="Shared analysis filters"><label>Time basis<select value={timeField} onChange={e => setTimeField(e.target.value as typeof timeField)}><option value="receivedAt">Report receipt</option><option value="observedAt">Witness observation</option></select></label>{mode === 'pro' && <label>Timeline end (UTC)<input aria-label="Timeline end day" type="range" min="8" max="18" value={before ? Number(before.slice(-2)) : 18} onChange={e => setBefore(`2026-08-${e.target.value.padStart(2,'0')}`)} /></label>}<label>From (UTC)<input type="date" value={after} max={before || undefined} onChange={e => setAfter(e.target.value)} /></label><label>Through (UTC)<input type="date" value={before} min={after || undefined} onChange={e => setBefore(e.target.value)} /></label><label><input type="checkbox" checked={undated} onChange={e => setUndated(e.target.checked)} /> Include undated observations</label><button className="bi-button" onClick={() => { setAfter(''); setBefore(''); setSpatial(null); }}>Clear analysis filters{spatial !== null ? ` (${spatial.length} spatially selected)` : ''}</button></section>}
+      {mode === 'pro' && <section className="analysis-controls" aria-label="Shared analysis filters"><label>Time basis<select value={timeField} onChange={e => setTimeField(e.target.value as typeof timeField)}><option value="receivedAt">Report receipt</option><option value="observedAt">Witness observation</option></select></label>{mode === 'pro' && <label>Timeline end (UTC)<input aria-label="Timeline end day" type="range" min="8" max="18" value={before ? Number(before.slice(-2)) : 18} onChange={e => setBefore(`2026-08-${e.target.value.padStart(2,'0')}`)} /></label>}<label>From (UTC)<input type="date" value={after} max={before || undefined} onChange={e => setAfter(e.target.value)} /></label><label>Through (UTC)<input type="date" value={before} min={after || undefined} onChange={e => setBefore(e.target.value)} /></label><label><input type="checkbox" checked={undated} onChange={e => setUndated(e.target.checked)} /> Include undated observations</label><button className="bi-button" onClick={() => { setAfter(''); setBefore(''); setSpatial(null); }}>Clear analysis filters{spatial !== null ? ` (${spatial.length} spatially selected)` : ''}</button></section>}
       <div className="bi-workspace">
         <section className="bi-records" aria-labelledby="reports-heading">
           <div className="bi-panel-heading"><h2 id="reports-heading">Reports & incidents</h2><SlidersHorizontal size={16} aria-hidden="true" /></div>
@@ -201,12 +230,18 @@ export function IntelligenceDashboard() {
         </section>
 
         <section className="bi-map-panel" aria-labelledby="map-heading">
-          <div className="bi-panel-heading"><div><h2 id="map-heading">Observation map</h2><p>Central Kalimantan · Synthetic observations</p></div><button className="bi-button" aria-pressed={mapFocus} onClick={() => setMapFocus(!mapFocus)}>{mapFocus ? 'Show reports' : 'Expand map'}<ArrowUpRight size={14} /></button></div>
-          {mode === 'pro' && <details className="pro-layers"><summary>Observation layers</summary><label><input type="checkbox" checked={points} onChange={e => setPoints(e.target.checked)} /> Observation points</label><p>Viewing directions unavailable: no bearings or heading references supplied.</p><p>Position uncertainty unavailable: no accuracy supplied.</p><label><input type="checkbox" checked={density} onChange={e => setDensity(e.target.checked)} /> Observation density</label><label>Smoothing radius (display pixels)<input type="range" min="10" max="80" value={radius} onChange={e => setRadius(Number(e.target.value))} /></label><p>Relative concentration: blue / low to orange / high. Shows where observations were submitted from, not where fires are burning. Fewer than 10 located records: points preferred (visualization guard, not scientific threshold).</p><p>Topography unavailable: no permitted terrain source configured.</p></details>}
-          {data ? <ObservationMap pro={mode === 'pro'} density={density} radius={radius} onSpatial={setSpatial} pointsVisible={mode === 'normal' || points} reports={reports} selectedIds={selectedIds} hoveredId={hoveredReport} onHover={setHoveredReport} onSelect={selectReport} viewport={viewport} setViewport={setViewport} /> : <div className="bi-map-canvas bi-empty" role="status">{loading ? 'Loading observation map…' : 'Load reports to view observation locations.'}</div>}
+          <div className="bi-panel-heading"><div><h2 id="map-heading">Observation map</h2><p>Central Kalimantan · Synthetic observations</p></div><button className="bi-button" aria-pressed={mapFocus} onClick={() => setMapFocus(!mapFocus)}>{mapFocus ? 'Restore windows' : 'Expand map'}<ArrowUpRight size={14} /></button></div>
+          {mode === 'pro' && <section className="pro-layers" aria-label="Observation layers"><header className="workspace-panel-title"><div><h2>Observation layers</h2><p>Choose what appears on the map.</p></div><button className="bi-icon-button" aria-label="Close layers" onClick={closeWindow}><X size={17}/></button></header>
+            <label className="layer-toggle"><span><strong>Observation points</strong><small>Permitted observer positions, not fire locations</small></span><input type="checkbox" checked={points} onChange={e => setPoints(e.target.checked)} /></label>
+            <label className="layer-toggle"><span><strong>Observation density</strong><small>Relative concentration of submitted observations</small></span><input type="checkbox" checked={density} onChange={e => setDensity(e.target.checked)} /></label>
+            {density && <div className="density-settings"><label>Smoothing radius <output>{radius}px</output><input type="range" min="10" max="80" value={radius} onChange={e => setRadius(Number(e.target.value))} /></label><p>Blue: lower concentration. Orange: higher. Fewer than 10 located observations: density is hidden. This is a display threshold, not a scientific validation.</p></div>}
+            <p className="layer-footnote">These layers show where observations were submitted, not where fires are burning.</p>
+            <details className="unavailable-layers"><summary>Unavailable layers</summary><p>Viewing directions: no bearings or heading references supplied.</p><p>Position uncertainty: no accuracy supplied.</p><p>Topography: no permitted terrain source configured.</p></details>
+          </section>}
+          {data ? <ObservationMap weatherPosition={report ? displayPosition(report) : null} weatherReference={report?.observedAt ?? data.referenceTime} onWeatherColor={() => setDensity(false)} pro={mode === 'pro'} density={density} radius={radius} onSpatial={setSpatial} pointsVisible={mode === 'normal' || points} reports={reports} selectedIds={selectedIds} hoveredId={hoveredReport} onHover={setHoveredReport} onSelect={selectReport} viewport={viewport} setViewport={setViewport} /> : <div className="bi-map-canvas bi-empty" role="status">{loading ? 'Loading observation map…' : 'Load reports to view observation locations.'}</div>}
           <div className="bi-map-bottom"><Info size={14} /><p>{data ? `${unlocated} matching ${unlocated === 1 ? 'report is' : 'reports are'} not plotted. ` : ''}Map movement does not change your selection.</p></div>
         </section>
-        {data && <div className="pro-pane" hidden={mode !== 'pro' || (!selectedReport && !selectedIncident)}><button className="bi-button pro-drawer-trigger" onClick={() => drawer.current?.showModal()}>Open investigation inspector</button><dialog ref={drawer} className="pro-dialog" aria-label="Investigation inspector" onKeyDown={e => e.stopPropagation()}><button className="bi-button pro-drawer-close" onClick={() => drawer.current?.close()}>Close inspector</button><Investigation data={data} reportId={selectedReport} incidentId={selectedIncident} selectReport={selectReport} actions={actions} onAction={action => setActions(current => [...current, action])} /></dialog></div>}
+        {data && <div className="pro-pane" hidden={mode !== 'pro' || (!selectedReport && !selectedIncident)}><button className="bi-button pro-drawer-trigger" onClick={() => drawer.current?.showModal()}>Open investigation inspector</button><dialog ref={drawer} className="pro-dialog" aria-label="Investigation inspector" onKeyDown={e => e.stopPropagation()}><button className="bi-button pro-drawer-close" onClick={closeDetails}>Close inspector</button><Investigation data={data} reportId={selectedReport} incidentId={selectedIncident} selectReport={selectReport} actions={actions} onAction={action => setActions(current => [...current, action])} /></dialog></div>}
       </div>
 
       {(report || incident) && <section hidden={mode === 'pro'} className="bi-detail" aria-labelledby="detail-heading"><div className="bi-detail-top"><div><span>{report ? 'Report details' : 'Provisional incident'} / {report?.id ?? incident?.id}</span><h2 id="detail-heading" ref={detailHeading} tabIndex={-1}>{report?.title ?? incident?.title}</h2></div><button className="bi-icon-button" aria-label="Close details" onClick={closeDetails}><X size={20} /></button></div>

@@ -1,0 +1,57 @@
+.pro-query-window{display:contents}
+.bi-pro{height:100dvh;overflow:hidden}
+.bi-pro .bi-header{position:fixed;inset:0 0 auto;height:58px;z-index:40}
+.bi-pro .bi-main{position:fixed;inset:58px 0 0;width:100%;max-width:none;padding:0;display:block;isolation:isolate}
+.bi-pro .bi-workspace,.bi-pro .bi-workspace:has(.pro-pane[hidden]){display:block;border:0;border-radius:0;background:none;margin:0}
+.bi-pro .bi-map-panel{position:absolute;inset:0;border:0;border-radius:0;background:var(--page);z-index:0}
+.bi-pro .analysis-map{height:100%}
+.bi-pro .analysis-map-host{position:absolute;inset:0;height:100%;min-height:0}
+.bi-pro .bi-map-panel>.bi-panel-heading,.bi-pro .bi-map-bottom,.bi-pro .bi-page-heading,.bi-pro .bi-footer{display:none}
+.pro-window-bar{position:absolute;inset:12px 64px auto 16px;z-index:10;display:flex;align-items:center;gap:6px;flex-wrap:wrap;pointer-events:none}
+.pro-window-bar .bi-button{pointer-events:auto;background:var(--surface);box-shadow:0 3px 12px #0002;min-height:40px}
+.pro-window-bar .bi-button[aria-pressed=true]{background:var(--action);color:var(--on-action);border-color:var(--action)}
+.pro-window-bar span{color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px}
+.bi-pro .bi-records,.bi-pro .pro-query-window,.bi-pro .analysis-controls,.bi-pro .analysis-table,.bi-pro .pro-pane{position:absolute;z-index:5;background:var(--surface);border:1px solid var(--control);border-radius:12px;box-shadow:0 10px 35px #0003;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.bi-pro .bi-records{top:72px;left:16px;bottom:96px;width:310px;display:flex;flex-direction:column}
+.bi-pro .bi-records>[dir]{min-height:0;overflow:auto;flex:1}
+.bi-pro .bi-report-scroll{height:auto;max-height:none}
+.bi-pro .bi-records .bi-list-footer{font-size:11px}
+.bi-pro .pro-query-window{top:72px;left:16px;bottom:96px;width:360px;padding:18px;display:block}
+.bi-pro .pro-query-window .bi-filters{display:flex;flex-direction:column;align-items:stretch;gap:16px}
+.bi-pro .pro-query-window label,.bi-pro .analysis-source{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.bi-pro .pro-query-window .bi-source-note{font-size:12px;line-height:1.5}
+.bi-pro .pro-query-window .pro-session,.bi-pro .pro-query-window .pro-filter{display:flex;flex-wrap:wrap}
+.bi-pro .analysis-controls{left:16px;bottom:96px;width:min(720px,calc(100% - 32px));padding:20px;display:flex;max-height:60vh;gap:18px;margin:0}
+.bi-pro .analysis-table{left:16px;right:16px;bottom:96px;padding:18px;max-height:45vh}
+.bi-pro .analysis-table h2{font-size:18px;margin:0 0 8px}
+.bi-pro .analysis-table p{font-size:12px;margin:0 0 12px}
+.bi-pro .analysis-table>div{max-height:28vh}
+.bi-pro .pro-pane{top:72px;right:16px;bottom:96px;width:380px}
+.bi-pro .pro-dialog,.bi-pro .pro-inspector{border:0;border-radius:0;background:transparent}
+.bi-pro .pro-body{max-height:none}
+.bi-pro .pro-drawer-trigger{display:none!important}
+.bi-pro .pro-drawer-close{display:inline-flex!important;margin:12px 16px 0}
+.bi-pro .analysis-map-toolbar{position:absolute;bottom:38px;left:16px;z-index:3;display:flex;gap:6px;padding:0;max-width:calc(100% - 32px)}
+.bi-pro .analysis-map-toolbar .bi-button{background:var(--surface);box-shadow:0 3px 12px #0002}
+.bi-pro .analysis-legend{position:absolute;bottom:0;left:0;max-width:calc(100% - 220px);padding:6px 12px;margin:0;background:var(--surface);font-size:11px;z-index:2;border-radius:0 6px 0 0}
+.bi-pro .analysis-map>[role=status]{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);max-width:360px;padding:10px;background:var(--surface);color:var(--ink);font-size:12px;z-index:4;border:1px solid var(--line);border-radius:8px}
+.bi-pro:not([data-panel=reports]) .bi-records,.bi-pro:not([data-panel=filters]) .pro-query-window,.bi-pro:not([data-panel=timeline]) .analysis-controls,.bi-pro:not([data-panel=table]) .analysis-table{display:none}
+.bi-pro.bi-exploring :is(.bi-records,.pro-query-window,.analysis-controls,.analysis-table,.pro-pane,.pro-layers){display:none!important}
+.bi-pro.bi-exploring .analysis-map-toolbar{display:none}
+/* Expand Normal against the current MapLibre container, not the removed raster canvas. */
+.bi-app:not(.bi-pro).bi-exploring .bi-map-panel{position:fixed;inset:76px 12px 12px;z-index:25;overflow:auto}
+.bi-app:not(.bi-pro).bi-exploring .analysis-map-host{height:calc(100dvh - 280px);min-height:200px}
+@media(max-width:1250px){
+ .bi-pro .pro-pane{position:absolute;top:112px;right:16px;bottom:96px;width:min(420px,calc(100% - 32px))}
+ .bi-pro:has(.pro-pane:not([hidden])) .bi-records{display:none}
+}
+@media(max-width:760px){
+ .bi-pro .bi-header{height:70px;padding:10px 12px}.bi-pro .bi-header-right{display:none}.bi-pro .bi-main{top:70px}
+ .pro-window-bar{left:8px;right:42px;gap:4px}.pro-window-bar .bi-button{padding:6px 8px;font-size:12px!important;min-height:34px}.pro-window-bar span{display:none}
+ .bi-pro .bi-records,.bi-pro .pro-query-window{top:100px;left:8px;bottom:130px;width:min(340px,calc(100% - 16px))}
+ .bi-pro .pro-pane{top:100px;left:8px;right:8px;bottom:130px;width:auto}
+ .bi-pro .analysis-map-toolbar{bottom:35px;left:8px;gap:4px}.bi-pro .analysis-map-toolbar .bi-button{font-size:11px!important;padding:5px}
+ .bi-pro .analysis-legend{display:none}.bi-pro .analysis-controls,.bi-pro .analysis-table{bottom:130px;max-height:55vh}
+}
+
+.environment-panel{padding:20px;background:var(--surface);color:var(--ink);border:1px solid var(--control);border-radius:12px;font-size:13px;line-height:1.5}.environment-panel h2{font-size:18px}.environment-panel p{color:var(--muted);margin:10px 0}.environment-panel label{display:block;margin:12px 0}.environment-panel select,.environment-panel input[type=date]{display:block;width:100%;padding:8px;background:var(--page);color:var(--ink);border:1px solid var(--control);border-radius:6px}.environment-panel .bi-button{margin:4px}.environment-panel dl>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}.environment-panel dd{margin:0}.environment-panel a{color:var(--focus)}.environment-panel svg{width:100%;height:100px}.bi-pro .environment-panel{position:absolute;z-index:7;left:16px;top:72px;bottom:96px;width:min(360px,calc(100% - 32px));overflow:auto;box-shadow:0 10px 35px #0003}.bi-pro:not([data-panel=environment]) .environment-panel,.bi-pro.bi-exploring .environment-panel{display:none}
