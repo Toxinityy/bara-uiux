@@ -63,6 +63,29 @@ export function ThemeControl() {
 
 export function LandingMotion() {
   useEffect(() => {
+    const hero = document.querySelector<HTMLElement>(".bl-hero");
+    if (!hero || (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    let visible = false;
+    const sync = () => {
+      hero.dataset.fireMotion = visible && !document.hidden && !reducedMotion.matches ? "running" : "paused";
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    });
+    observer.observe(hero);
+    document.addEventListener("visibilitychange", sync);
+    reducedMotion.addEventListener("change", sync);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      reducedMotion.removeEventListener("change", sync);
+      delete hero.dataset.fireMotion;
+    };
+  }, []);
+
+  useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     if (
       media.matches ||

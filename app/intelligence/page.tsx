@@ -4,6 +4,8 @@ import { IntelligenceDashboard } from '../../components/intelligence/dashboard';
 import './intelligence.css';
 import './exploration.css';
 import './pro.css';
+import './floating-workspace.css';
+import './workspace-controls.css';
 
 const inter = localFont({
   src: '../../public/fonts/InterVariable.woff2',

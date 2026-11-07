@@ -283,6 +283,7 @@
   inset: -12%;
   z-index: -1;
   pointer-events: none;
+  opacity: 0;
   transform-origin: center bottom;
 }
 .bl-hero::before {
@@ -296,14 +297,18 @@
     radial-gradient(ellipse 24% 46% at 72% 90%, #ffad42ee, transparent 74%);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .bl-hero::before,
-  .bl-hero::after {
-    animation: bl-hero-flame 4s ease infinite;
+  .bl-hero[data-fire-motion]::before,
+  .bl-hero[data-fire-motion]::after {
+    animation: bl-hero-flame 4s ease infinite paused;
   }
-  .bl-hero::after {
+  .bl-hero[data-fire-motion]::after {
     animation-duration: 5.3s;
     animation-delay: -2.1s;
     animation-direction: reverse;
+  }
+  .bl-hero[data-fire-motion="running"]::before,
+  .bl-hero[data-fire-motion="running"]::after {
+    animation-play-state: running;
   }
 }
 @keyframes bl-hero-flame {

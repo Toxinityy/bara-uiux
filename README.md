@@ -1,5 +1,7 @@
 # BARA landing page
 
+English landing page, a shared Normal/Pro Intelligence workspace at `/intelligence`, and a connected Witness client at `/witness`. Intelligence uses synthetic capture-session and analysis examples aligned with [the backend handoff](public/UI-BACKEND-HANDOFF.md); its backend connection is not implemented. Witness connects to the existing BARA backend through the configured same-origin proxy. Authentication is not implemented.
+
 ## Local Docker preview
 
 With Docker Desktop and the existing BARA infrastructure running:
@@ -27,8 +29,6 @@ docker compose down
 
 Camera and location require a secure browser context: desktop localhost works; phone access over a LAN address requires HTTPS.
 
-English landing page, a synthetic Normal Intelligence demo at `/intelligence`, and a live Witness client at `/witness` connected to the existing BARA backend. Authentication is not implemented.
-
 Requires Node.js 24 (the built-in test runner loads TypeScript data directly) and npm.
 
 ```sh
@@ -46,11 +46,13 @@ npm run build
 npm start
 ```
 
-The home route is `app/page.tsx`; its redesign is scoped in `app/landing.css`. Shared base styles remain in `app/globals.css` for the existing application. English copy and the labeled synthetic report `BARA-DEMO-0042` live in `lib/content.ts`. Exploration links use the real `#intelligence`, `#witness`, and `#how-it-works` sections. A separate Open Intelligence demo action uses the verified destination from `lib/destinations.ts`.
+The home route is `app/page.tsx`; its redesign is scoped in `app/landing.css`. Shared base styles remain in `app/globals.css` for the existing application. English copy and the labeled synthetic report `BARA-DEMO-0042` live in `lib/content.ts`. Navigation links use the `#intelligence`, `#witness`, and `#how-it-works` sections. Explore Intelligence opens `/intelligence` and Explore Witness opens `/witness`, using the centralized destinations in `lib/destinations.ts`.
 
 Landing components live in `components/landing/`; the reusable parallax composition lives in `components/ui/parallax-scrolling.tsx`, with a usage example in `components/ui/demo.tsx`. The Witness examples are read-only. The landing page self-hosts Inter variable (SIL Open Font License in `public/fonts/`). GSAP ScrollTrigger drives section reveals and the layered BARA wordmark/phone between the opening copy and section 01. Lenis smooths wheel scrolling on the landing route; touch and keyboard scrolling remain native. Reduced-motion and data-saver preferences disable motion. Cleanup removes this component's ticker, scrolling instance, and triggers without affecting other animations. Theme follows the device unless a light/dark preference is saved locally under `bara-landing-theme`.
 
 ## Component structure and optional Tailwind/shadcn setup
+
+The hero retains its flickering orange gradient, BARA text wordmark, and phone parallax. Fire motion pauses offscreen and when the tab is hidden; reduced-motion and data-saver preferences retain the static gradient. Worktrees have independent files and build outputs: start each checkout on a different port and use that port when reviewing its changes. The `.worktrees/` directory is excluded from Git.
 
 TypeScript is already configured. Global styles are in `app/globals.css`, and the landing design is in `app/landing.css`. This component uses those existing styles, requires no props or provider, and reuses the local wordmark and Witness device rather than remote image layers. Its layout follows the landing page's desktop/mobile breakpoints. The supplied animation pattern is adapted from [Osmo](https://www.osmo.supply/).
 
@@ -66,8 +68,12 @@ The requested `@studio-freight/lenis` package is installed at 1.0.42. npm marks 
 
 The existing dashboard lives in `components/intelligence/`, with its original route-scoped styles in `app/intelligence/intelligence.css`. Its application code is unchanged by the landing redesign.
 
-The shared adapter and validated frontend types are in `lib/intelligence.ts`; its complete synthetic dataset is `public/data/intelligence-demo.json`. Refresh requests that file again. Receipt-time windows use its fixed reference clock, 18 August 2026 at 16:00 WIB. Area and receipt period are URL values; search and coordinates stay out of URLs. Pro in the application remains unavailable; the landing page’s local Pro preview does not enable it.
+The shared adapter and validated frontend types are in `lib/intelligence.ts`. Refresh reloads the selected preview source. The original eight captures and the 72-position map scenario retain their stable IDs and positions. Session groupings and image-assessment examples are authored UI fixtures. Capture-time windows use the dataset reference clock, 18 August 2026 at 16:00 WIB; unknown capture times have an explicit inclusion choice. Search and coordinates stay out of URLs. Phones use Normal; tablets and desktops can open Pro.
+
+Normal shows captures, sessions and concise photo findings. Pro adds session checklists, evidence-source links, missing information, current witness request context, distinct capture/analysis timelines, and two-capture comparison. Session lifecycle, analysis processing and evidence coverage have separate indicators. Claims, operational incident grouping and saved review actions are unavailable. See [UI alignment notes](docs/backend-ui-alignment.md) for mappings and integration gaps.
 
 Inter is subset locally to Latin/Latin Extended, punctuation and currency symbols for this English iteration (151 KB WOFF2, down from 352 KB). Expand the subset before adding other scripts. Late-loaded GSAP skips hero entrances after 1.5 seconds so slow connections do not move text already being read.
 
 The observation map uses OpenStreetMap raster tiles with attribution, zoom and pan controls. Network access is required for the basemap; if tiles fail, selectable observation positions and the report list remain available. Positions in the fixtures are synthetic. A future service adapter must supply only data authorized for the viewer; client-side display checks are not access control.
+
+Weather, basemap, and synthetic dataset provenance: [Data sources](DATA_SOURCES.md).
