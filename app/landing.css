@@ -202,7 +202,6 @@
 .bl .bl-device-screen .bl-logo-dark { display: none; }
 .bl .bl-device-screen .bl-logo-light { display: block; }
 .bl-app-heading .bl-brand-logo { width: 74px; }
-}
 .bl-theme {
   display: grid;
   place-items: center;

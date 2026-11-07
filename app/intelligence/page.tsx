@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import { IntelligenceDashboard } from '../../components/intelligence/dashboard';
 import './intelligence.css';
 import './exploration.css';
+import './pro.css';
 
 const inter = localFont({
   src: '../../public/fonts/InterVariable.woff2',

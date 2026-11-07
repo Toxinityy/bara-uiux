@@ -1,0 +1,2211 @@
+{
+  "demo": true,
+  "referenceTime": "2026-08-18T09:00:00Z",
+  "reports": [
+    {
+      "id": "ANALYSIS-001",
+      "title": "Synthetic observation 1",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-12T02:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-002",
+      "title": "Synthetic observation 2",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-13T03:30:00Z",
+      "observedAt": "2026-08-13T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.157,
+        "longitude": 113.918,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-003",
+      "title": "Synthetic observation 3",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-14T04:30:00Z",
+      "observedAt": "2026-08-14T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.331,
+        "longitude": 114.05000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-004",
+      "title": "Synthetic observation 4",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-15T05:30:00Z",
+      "observedAt": "2026-08-15T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.028,
+        "longitude": 113.778,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-005",
+      "title": "Synthetic observation 5",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-16T06:30:00Z",
+      "observedAt": "2026-08-16T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2020000000000004,
+        "longitude": 113.91000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-006",
+      "title": "Synthetic observation 6",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-17T07:30:00Z",
+      "observedAt": "2026-08-17T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.259,
+        "longitude": 114.042,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-007",
+      "title": "Synthetic observation 7",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-18T08:30:00Z",
+      "observedAt": "2026-08-18T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.073,
+        "longitude": 113.77000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-008",
+      "title": "Synthetic observation 8",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-12T09:30:00Z",
+      "observedAt": "2026-08-12T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1300000000000003,
+        "longitude": 113.90200000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-009",
+      "title": "Synthetic observation 9",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-13T02:30:00Z",
+      "observedAt": "2026-08-13T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.304,
+        "longitude": 114.034,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-010",
+      "title": "Synthetic observation 10",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-14T03:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.001,
+        "longitude": 113.762,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-011",
+      "title": "Synthetic observation 11",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-15T04:30:00Z",
+      "observedAt": "2026-08-15T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1750000000000003,
+        "longitude": 113.894,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-012",
+      "title": "Synthetic observation 12",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-16T05:30:00Z",
+      "observedAt": "2026-08-16T05:10:00Z",
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-013",
+      "title": "Synthetic observation 13",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-17T06:30:00Z",
+      "observedAt": "2026-08-17T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.0460000000000003,
+        "longitude": 113.754,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-014",
+      "title": "Synthetic observation 14",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-18T07:30:00Z",
+      "observedAt": "2026-08-18T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.22,
+        "longitude": 113.88600000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-015",
+      "title": "Synthetic observation 15",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-12T08:30:00Z",
+      "observedAt": "2026-08-12T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2769999999999997,
+        "longitude": 114.018,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-016",
+      "title": "Synthetic observation 16",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-13T09:30:00Z",
+      "observedAt": "2026-08-13T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.091,
+        "longitude": 113.74600000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-017",
+      "title": "Synthetic observation 17",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-14T02:30:00Z",
+      "observedAt": "2026-08-14T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.148,
+        "longitude": 113.87800000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-018",
+      "title": "Synthetic observation 18",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-15T03:30:00Z",
+      "observedAt": "2026-08-15T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.322,
+        "longitude": 114.01,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-019",
+      "title": "Synthetic observation 19",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-16T04:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.019,
+        "longitude": 113.738,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-020",
+      "title": "Synthetic observation 20",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-17T05:30:00Z",
+      "observedAt": "2026-08-17T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.193,
+        "longitude": 113.87000000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-021",
+      "title": "Synthetic observation 21",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-18T06:30:00Z",
+      "observedAt": "2026-08-18T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.25,
+        "longitude": 114.138,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-022",
+      "title": "Synthetic observation 22",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-12T07:30:00Z",
+      "observedAt": "2026-08-12T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.064,
+        "longitude": 113.73,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-023",
+      "title": "Synthetic observation 23",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-13T08:30:00Z",
+      "observedAt": "2026-08-13T08:10:00Z",
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-024",
+      "title": "Synthetic observation 24",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-14T09:30:00Z",
+      "observedAt": "2026-08-14T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.295,
+        "longitude": 114.13000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-025",
+      "title": "Synthetic observation 25",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-15T02:30:00Z",
+      "observedAt": "2026-08-15T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -1.992,
+        "longitude": 113.72200000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-026",
+      "title": "Synthetic observation 26",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-16T03:30:00Z",
+      "observedAt": "2026-08-16T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1660000000000004,
+        "longitude": 113.85400000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-027",
+      "title": "Synthetic observation 27",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-17T04:30:00Z",
+      "observedAt": "2026-08-17T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.34,
+        "longitude": 114.122,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-028",
+      "title": "Synthetic observation 28",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-18T05:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.037,
+        "longitude": 113.714,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-029",
+      "title": "Synthetic observation 29",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-12T06:30:00Z",
+      "observedAt": "2026-08-12T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2110000000000003,
+        "longitude": 113.84600000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-030",
+      "title": "Synthetic observation 30",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-13T07:30:00Z",
+      "observedAt": "2026-08-13T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.268,
+        "longitude": 114.114,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-031",
+      "title": "Synthetic observation 31",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-14T08:30:00Z",
+      "observedAt": "2026-08-14T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.0820000000000003,
+        "longitude": 113.706,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-032",
+      "title": "Synthetic observation 32",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-15T09:30:00Z",
+      "observedAt": "2026-08-15T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1390000000000002,
+        "longitude": 113.83800000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-033",
+      "title": "Synthetic observation 33",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-16T02:30:00Z",
+      "observedAt": "2026-08-16T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.3129999999999997,
+        "longitude": 114.10600000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-034",
+      "title": "Synthetic observation 34",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-17T03:30:00Z",
+      "observedAt": "2026-08-17T03:10:00Z",
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-035",
+      "title": "Synthetic observation 35",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-18T04:30:00Z",
+      "observedAt": "2026-08-18T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.184,
+        "longitude": 113.83000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-036",
+      "title": "Synthetic observation 36",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-12T05:30:00Z",
+      "observedAt": "2026-08-12T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2409999999999997,
+        "longitude": 114.098,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-037",
+      "title": "Synthetic observation 37",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-13T06:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.055,
+        "longitude": 113.69000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-038",
+      "title": "Synthetic observation 38",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-14T07:30:00Z",
+      "observedAt": "2026-08-14T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.112,
+        "longitude": 113.95800000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-039",
+      "title": "Synthetic observation 39",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-15T08:30:00Z",
+      "observedAt": "2026-08-15T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.286,
+        "longitude": 114.09,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-040",
+      "title": "Synthetic observation 40",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-16T09:30:00Z",
+      "observedAt": "2026-08-16T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1,
+        "longitude": 113.682,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-041",
+      "title": "Synthetic observation 41",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-17T02:30:00Z",
+      "observedAt": "2026-08-17T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.157,
+        "longitude": 113.95000000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-042",
+      "title": "Synthetic observation 42",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-18T03:30:00Z",
+      "observedAt": "2026-08-18T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.331,
+        "longitude": 114.08200000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-043",
+      "title": "Synthetic observation 43",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-12T04:30:00Z",
+      "observedAt": "2026-08-12T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.028,
+        "longitude": 113.674,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-044",
+      "title": "Synthetic observation 44",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-13T05:30:00Z",
+      "observedAt": "2026-08-13T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2020000000000004,
+        "longitude": 113.94200000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-045",
+      "title": "Synthetic observation 45",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-14T06:30:00Z",
+      "observedAt": "2026-08-14T06:10:00Z",
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-046",
+      "title": "Synthetic observation 46",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-15T07:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.073,
+        "longitude": 113.66600000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-047",
+      "title": "Synthetic observation 47",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-16T08:30:00Z",
+      "observedAt": "2026-08-16T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1300000000000003,
+        "longitude": 113.93400000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-048",
+      "title": "Synthetic observation 48",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-17T09:30:00Z",
+      "observedAt": "2026-08-17T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.304,
+        "longitude": 114.066,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-049",
+      "title": "Synthetic observation 49",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-18T02:30:00Z",
+      "observedAt": "2026-08-18T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.001,
+        "longitude": 113.658,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-050",
+      "title": "Synthetic observation 50",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-12T03:30:00Z",
+      "observedAt": "2026-08-12T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1750000000000003,
+        "longitude": 113.92600000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-051",
+      "title": "Synthetic observation 51",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-13T04:30:00Z",
+      "observedAt": "2026-08-13T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2319999999999998,
+        "longitude": 114.058,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-052",
+      "title": "Synthetic observation 52",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-14T05:30:00Z",
+      "observedAt": "2026-08-14T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.0460000000000003,
+        "longitude": 113.65,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-053",
+      "title": "Synthetic observation 53",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-15T06:30:00Z",
+      "observedAt": "2026-08-15T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.22,
+        "longitude": 113.918,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-054",
+      "title": "Synthetic observation 54",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-16T07:30:00Z",
+      "observedAt": "2026-08-16T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2769999999999997,
+        "longitude": 114.05000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-055",
+      "title": "Synthetic observation 55",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-17T08:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.091,
+        "longitude": 113.778,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-056",
+      "title": "Synthetic observation 56",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-18T09:30:00Z",
+      "observedAt": "2026-08-18T09:10:00Z",
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-057",
+      "title": "Synthetic observation 57",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-12T02:30:00Z",
+      "observedAt": "2026-08-12T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.322,
+        "longitude": 114.042,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-058",
+      "title": "Synthetic observation 58",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-13T03:30:00Z",
+      "observedAt": "2026-08-13T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.019,
+        "longitude": 113.77000000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-059",
+      "title": "Synthetic observation 59",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-14T04:30:00Z",
+      "observedAt": "2026-08-14T04:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.193,
+        "longitude": 113.90200000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-060",
+      "title": "Synthetic observation 60",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-15T05:30:00Z",
+      "observedAt": "2026-08-15T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.25,
+        "longitude": 114.034,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-061",
+      "title": "Synthetic observation 61",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-16T06:30:00Z",
+      "observedAt": "2026-08-16T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.064,
+        "longitude": 113.762,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-062",
+      "title": "Synthetic observation 62",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-17T07:30:00Z",
+      "observedAt": "2026-08-17T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.121,
+        "longitude": 113.894,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-063",
+      "title": "Synthetic observation 63",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-18T08:30:00Z",
+      "observedAt": "2026-08-18T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.295,
+        "longitude": 114.02600000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-064",
+      "title": "Synthetic observation 64",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-12T09:30:00Z",
+      "observedAt": null,
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -1.992,
+        "longitude": 113.754,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-065",
+      "title": "Synthetic observation 65",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-13T02:30:00Z",
+      "observedAt": "2026-08-13T02:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1660000000000004,
+        "longitude": 113.88600000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-066",
+      "title": "Synthetic observation 66",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-14T03:30:00Z",
+      "observedAt": "2026-08-14T03:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.34,
+        "longitude": 114.018,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-067",
+      "title": "Synthetic observation 67",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-15T04:30:00Z",
+      "observedAt": "2026-08-15T04:10:00Z",
+      "review": "Awaiting review",
+      "position": null,
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-068",
+      "title": "Synthetic observation 68",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-16T05:30:00Z",
+      "observedAt": "2026-08-16T05:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.2110000000000003,
+        "longitude": 113.87800000000001,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-069",
+      "title": "Synthetic observation 69",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-17T06:30:00Z",
+      "observedAt": "2026-08-17T06:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.268,
+        "longitude": 114.01,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-070",
+      "title": "Synthetic observation 70",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Palangka Raya",
+      "receivedAt": "2026-08-18T07:30:00Z",
+      "observedAt": "2026-08-18T07:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.0820000000000003,
+        "longitude": 113.738,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-071",
+      "title": "Synthetic observation 71",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Pulang Pisau",
+      "receivedAt": "2026-08-12T08:30:00Z",
+      "observedAt": "2026-08-12T08:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.1390000000000002,
+        "longitude": 113.87000000000002,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    },
+    {
+      "id": "ANALYSIS-072",
+      "title": "Synthetic observation 72",
+      "description": "Authored analysis scenario: smoke-like haze reported; fire and source location remain unresolved.",
+      "area": "Katingan",
+      "receivedAt": "2026-08-13T09:30:00Z",
+      "observedAt": "2026-08-13T09:10:00Z",
+      "review": "Awaiting review",
+      "position": {
+        "latitude": -2.3129999999999997,
+        "longitude": 114.138,
+        "authorized": true
+      },
+      "claims": [
+        {
+          "subject": "Smoke",
+          "assessment": "Reported",
+          "source": "Synthetic witness statement"
+        },
+        {
+          "subject": "Fire presence",
+          "assessment": "Unresolved",
+          "source": "No flame or independent evidence available"
+        },
+        {
+          "subject": "Source location",
+          "assessment": "Unresolved",
+          "source": "Plume base not visible"
+        }
+      ]
+    }
+  ],
+  "incidents": []
+}
