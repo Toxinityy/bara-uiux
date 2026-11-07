@@ -1,15 +1,40 @@
 # BARA landing page
 
-English landing page and a working Normal Intelligence dashboard at `/intelligence`. Intelligence uses explicitly synthetic records; Witness remains an illustrative landing-page preview. No backend, authentication, AI analysis, or report submission is implemented.
+## Local Docker preview
+
+With Docker Desktop and the existing BARA infrastructure running:
+
+```sh
+docker compose up -d --build
+```
+
+Open http://localhost:3003 or http://localhost:3003/witness. Ports 3000 (API), 3001 (existing Witness), and 3002 (Intelligence) remain assigned to the existing apps. This container uses Node.js 24 and joins the existing `bara-data` network.
+
+Requests to `/api/backend/:path` proxy to `http://api:3000/:path`, for example `/api/backend/sessions`. Witness uses this same-origin path for session creation, status checks, ending, and photo submission, including from a phone. No browser cross-origin API access is required. The proxy allows 95 seconds for backend analysis and instruction generation.
+
+At `/witness`, GPS and compass start automatically, subject to device support and browser permissions. On phones that require a tap for compass permission, Open camera or Start session retries the permission request. Both sensors retain their stop/retry controls. Start a session in Controls and open the camera. Snap enables after the session, live camera, location, and absolute heading are ready. Each tap sends one JPEG (maximum 1600 pixels on its longest side) with session ID, capture time, latitude, longitude, and direction. The existing instruction area displays the backend result. Session actions and capture are mutually exclusive while a request is in progress. Active sessions are remembered per tab and verified after reload; leaving the page stops devices but does not end the session. Use End session to finish it.
+
+The topic coverage UI is not yet connected to the backend checklist; uploaded evidence and assessments are available in the existing Intelligence app on port 3002.
+
+To target a service running directly on the PC, copy `.env.example` to `.env`, set `API_BASE_URL=http://host.docker.internal:3000`, and rebuild. The proxy destination is embedded at build time. Container-side code can also reach other PC services through `host.docker.internal`; other BARA containers are reachable by their service names on `bara-data`.
+
+```sh
+docker compose logs -f ui
+docker compose down
+```
+
+Camera and location require a secure browser context: desktop localhost works; phone access over a LAN address requires HTTPS.
+
+English landing page, a synthetic Normal Intelligence demo at `/intelligence`, and a live Witness client at `/witness` connected to the existing BARA backend. Authentication is not implemented.
 
 Requires Node.js 24 (the built-in test runner loads TypeScript data directly) and npm.
 
 ```sh
 npm install
-npm run dev
+npm run dev -- --port 3003
 ```
 
-Open http://localhost:3000 on this computer. This address is not a phone-accessible deployment.
+Open http://localhost:3003 on this computer. For development outside Docker, the proxy defaults to the API at http://localhost:3000. This address is not a phone-accessible deployment.
 
 ```sh
 npm run lint

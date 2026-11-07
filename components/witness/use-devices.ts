@@ -9,8 +9,10 @@ export function useDevices() {
   const stream = useRef<MediaStream | null>(null);
   const cameraRequest = useRef(0);
   const locationWatch = useRef<number | null>(null);
+  const locationRequest = useRef(0);
   const compassCleanup = useRef<(() => void) | null>(null);
   const compassRequest = useRef(0);
+  const compassPermissionPending = useRef(false);
   const [camera, setCamera] = useState<'closed' | 'loading' | 'ready' | 'error'>('closed');
   const [cameraError, setCameraError] = useState('');
   const [location, setLocation] = useState<GeolocationCoordinates | null>(null);
@@ -58,40 +60,43 @@ export function useDevices() {
     }
   }
 
-  function stopLocation() {
+  const stopLocation = useCallback(() => {
+    locationRequest.current++;
     if (locationWatch.current !== null) navigator.geolocation.clearWatch(locationWatch.current);
     locationWatch.current = null;
     setLocationOn(false);
     setLocation(null);
     setLocationStatus('Not enabled');
-  }
+  }, []);
 
-  function startLocation() {
+  const startLocation = useCallback(() => {
     if (!navigator.geolocation) { setLocationStatus('Location is unavailable in this browser.'); return; }
     stopLocation();
+    const request = locationRequest.current;
     setLocationOn(true);
     setLocationStatus('Waiting for location…');
     locationWatch.current = navigator.geolocation.watchPosition(position => {
-      if (locationWatch.current === null) return;
+      if (request !== locationRequest.current) return;
       setLocation(position.coords);
       setLocationStatus('Location available');
     }, error => {
-      if (locationWatch.current === null) return;
+      if (request !== locationRequest.current) return;
       stopLocation();
       setLocationStatus(error.code === 1 ? 'Location denied. Allow it in browser settings, then enable again.' : 'Location unavailable. Move only if safe, then enable again.');
     }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
-  }
+  }, [stopLocation]);
 
-  function stopCompass() {
+  const stopCompass = useCallback(() => {
     compassRequest.current++;
     compassCleanup.current?.();
     compassCleanup.current = null;
+    compassPermissionPending.current = false;
     setCompassOn(false);
     setHeading(null);
     setCompassStatus('Not enabled');
-  }
+  }, []);
 
-  async function startCompass() {
+  const startCompass = useCallback(async () => {
     stopCompass();
     const request = compassRequest.current;
     if (typeof DeviceOrientationEvent === 'undefined') { setCompassStatus('This browser does not support a compass.'); return; }
@@ -118,15 +123,28 @@ export function useDevices() {
       };
     } catch (error) {
       if (request !== compassRequest.current) return;
+      compassPermissionPending.current = true;
       setCompassOn(false);
-      setCompassStatus(error instanceof Error ? error.message : 'Compass access failed. Please try again.');
+      setCompassStatus(error instanceof DOMException && error.name === 'NotAllowedError'
+        ? 'Tap Open camera, Start session, or Start compass to allow compass access.'
+        : error instanceof Error ? error.message : 'Compass access failed. Please try again.');
     }
+  }, [stopCompass]);
+
+  function requestSensorPermissions() {
+    if (compassPermissionPending.current) void startCompass();
   }
 
   useEffect(() => {
+    const startup = window.setTimeout(() => {
+      startLocation();
+      void startCompass();
+    }, 0);
     const release = () => {
+      window.clearTimeout(startup);
       cameraRequest.current++;
       compassRequest.current++;
+      locationRequest.current++;
       stream.current?.getTracks().forEach(track => track.stop());
       if (locationWatch.current !== null) navigator.geolocation.clearWatch(locationWatch.current);
       locationWatch.current = null;
@@ -144,9 +162,9 @@ export function useDevices() {
     };
     window.addEventListener('pagehide', hide);
     return () => { release(); window.removeEventListener('pagehide', hide); };
-  }, []);
+  }, [startLocation, startCompass]);
 
-  return { attachVideo, camera, cameraError, openCamera, closeCamera, frameReady: () => {
+  return { video, requestSensorPermissions, attachVideo, camera, cameraError, openCamera, closeCamera, frameReady: () => {
     if (stream.current?.active && video.current && video.current.videoWidth > 0) setCamera('ready');
   }, location, locationOn, locationStatus, startLocation, stopLocation, heading, compassOn, compassStatus, startCompass, stopCompass };
 }

@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowUpRight, Camera, Check, ChevronRight, Compass, Info, Ma
 import { BrandLogo, BrandLogoFilters } from '../landing/brand-logo';
 import { captureBlock } from '../../lib/witness';
 import { useDevices } from './use-devices';
+import { useSession } from './use-session';
 
 const mobileQuery = '(max-width: 767px), (pointer: coarse) and (max-width: 1024px) and (max-height: 600px)';
 const subscribeMobile = (callback: () => void) => {
@@ -36,7 +37,7 @@ function DesktopNotice() {
     <div className="bw-desktop-copy"><Smartphone size={40} strokeWidth={1.5} />
       <h1>Made for the<br />view from your phone.</h1>
       <p>BARA Witness uses your phone’s camera, location, and compass to help document what you see.</p>
-      <p>Open this page on your phone to explore the mobile UI preview.</p>
+      <p>Open this page on your phone to start a session and capture observations.</p>
       <button className="bw-primary" onClick={async () => {
         try { await navigator.clipboard.writeText(window.location.href); setCopyStatus('Link copied'); }
         catch { setCopyStatus('Copy the address from your browser'); }
@@ -44,16 +45,16 @@ function DesktopNotice() {
       <span role="status" className="bw-sr">{copyStatus}</span>
       <Link className="bw-back" href="/"><ArrowLeft size={16} />Back to BARA</Link>
     </div>
-    <p className="bw-desktop-note">Mobile UI preview · Photo submission is not connected.</p>
+    <p className="bw-desktop-note">BARA Witness · Capture observations from your phone.</p>
   </div>;
 }
 
 function MobileCamera() {
-  const { camera, location, heading, closeCamera, attachVideo, frameReady, cameraError, openCamera, locationStatus, locationOn, stopLocation, startLocation, compassStatus, compassOn, stopCompass, startCompass } = useDevices();
+  const { video, requestSensorPermissions, camera, location, heading, closeCamera, attachVideo, frameReady, cameraError, openCamera, locationStatus, locationOn, stopLocation, startLocation, compassStatus, compassOn, stopCompass, startCompass } = useDevices();
+  const { session, checking, busy, sending, message, guidance, toggleSession, capture } = useSession();
   const sheet = useRef<HTMLDialogElement>(null);
   const shell = useRef<HTMLDivElement>(null);
   const [panel, setPanel] = useState<Panel>('controls');
-  const [serviceMessage, setServiceMessage] = useState('');
   const [online, setOnline] = useState(() => navigator.onLine);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenAvailable] = useState(() => Boolean(document.fullscreenEnabled));
@@ -78,7 +79,23 @@ function MobileCamera() {
     setSheetOpen(true);
     sheet.current?.showModal();
   }
-  const blocked = captureBlock(camera === 'ready', Boolean(location), heading !== null, online);
+  function startCamera() {
+    requestSensorPermissions();
+    void openCamera();
+  }
+  function changeSession() {
+    requestSensorPermissions();
+    void toggleSession();
+  }
+  function snap() {
+    if (blocked || !video.current || !location || heading === null) return;
+    void capture(video.current, {
+      time: new Date().toISOString(),
+      location: { latitude: location.latitude, longitude: location.longitude },
+      direction: heading,
+    });
+  }
+  const blocked = captureBlock(camera === 'ready', Boolean(location), heading !== null, online, session?.status === 'active', checking || busy || sending);
   const selected = typeof panel === 'number' ? topics[panel] : null;
   const direction = heading === null ? 'Direction off' : `${Math.round(heading) % 360}° ${['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.round(heading / 45) % 8]}`;
   const panelTitle = selected?.name ?? (panel === 'controls' ? 'Camera controls' : panel === 'coverage' ? 'Observation coverage' : 'Camera instruction');
@@ -95,7 +112,7 @@ function MobileCamera() {
         {camera !== 'closed' ? <button className="bw-icon-button" aria-label="Close camera" onClick={closeCamera}><X size={21} /></button> : <Link className="bw-icon-button" href="/" aria-label="Back to BARA"><X size={21} /></Link>}
       </div>
     </header>
-    <div className="bw-session-bar"><span><i />No active session</span><button onClick={() => openPanel('controls')}>UI preview<Info size={14} /></button></div>
+    <div className="bw-session-bar"><span><i />{checking ? 'Checking session…' : session ? 'Session active' : 'No active session'}</span><button onClick={() => openPanel('controls')}>{session ? 'End session' : 'Start session'}<Info size={14} /></button></div>
 
     <div className="bw-viewfinder">
       <video ref={attachVideo} autoPlay playsInline muted onLoadedData={frameReady} onPlaying={frameReady} aria-label="Live camera preview" className={camera === 'ready' ? 'bw-video is-ready' : 'bw-video'} />
@@ -108,7 +125,7 @@ function MobileCamera() {
         <Camera size={32} strokeWidth={1.5} />
         <h1>{camera === 'loading' ? 'Opening camera…' : camera === 'error' ? 'Camera unavailable' : 'Your perspective matters.'}</h1>
         <p>{camera === 'error' ? cameraError : camera === 'loading' ? 'Allow camera access when your browser asks.' : 'Document what you can see, from where you are.'}</p>
-        {camera !== 'loading' && <button className="bw-primary" onClick={openCamera}><Camera size={18} />{camera === 'error' ? 'Retry camera' : 'Open camera'}</button>}
+        {camera !== 'loading' && <button className="bw-primary" onClick={startCamera}><Camera size={18} />{camera === 'error' ? 'Retry camera' : 'Open camera'}</button>}
         <span className="bw-private">{camera === 'loading' ? 'You can close the camera at any time.' : 'Camera access starts only when you allow it.'}</span>
       </div>}
       <nav className="bw-topic-rail" aria-label="Observation topics">
@@ -119,16 +136,16 @@ function MobileCamera() {
       </div>
       <section className="bw-guidance" aria-labelledby="bw-guidance-title">
         <div><h2 id="bw-guidance-title">Camera instruction</h2><button aria-label="Camera instruction details" onClick={() => openPanel('guidance')}><Info size={18} /></button></div>
-        <p>Camera guidance will appear here.</p>
+        <p role="status" style={{ whiteSpace: 'pre-line' }}>{guidance || 'Camera guidance will appear here.'}</p>
       </section>
     </div>
 
     <div className="bw-bottom">
       <div className="bw-capture">
-        <p id="bw-capture-block" role="status">{blocked}</p>
+        <p id="bw-capture-block" role="status">{sending ? 'Saving snapshot…' : blocked || 'Ready to capture.'}</p>
         <div className="bw-shutter-row">
-          <button className="bw-sensor" onClick={() => openPanel('controls')}><MapPin size={19} /><span>{location ? 'Location on' : 'Location off'}</span></button>
-          <button className="bw-shutter" disabled aria-describedby="bw-capture-block" aria-label="Snap"><Camera size={26} /><span>Snap</span></button>
+          <button className="bw-sensor" onClick={() => openPanel('controls')}><MapPin size={19} /><span>{location ? 'Location on' : locationOn ? 'Locating…' : 'Location off'}</span></button>
+          <button className="bw-shutter" disabled={Boolean(blocked)} onClick={snap} aria-describedby="bw-capture-block" aria-label="Snap" aria-busy={sending}><Camera size={26} /><span>{sending ? 'Sending…' : 'Snap'}</span></button>
           <button className="bw-sensor" onClick={() => openPanel('controls')}><Compass size={19} /><span>{direction}</span></button>
         </div>
         <div className="bw-safety"><ShieldCheck size={15} /><span>Stay back. Observe from a safe position.</span></div>
@@ -140,13 +157,13 @@ function MobileCamera() {
       <div className="bw-sheet-inner">
         <header><h2 id="bw-sheet-title">{panelTitle}</h2><button autoFocus className="bw-icon-button" aria-label="Close details" onClick={() => sheet.current?.close()}><X size={22} /></button></header>
         {panel === 'controls' && <>
-          <p className="bw-preview-note">Try your device setup. Sessions, photo submission, and model assessments are not connected in this UI preview.</p>
-          <section className="bw-control-group"><h3>Session</h3><p>No active session</p>
-            <button className="bw-secondary" onClick={() => setServiceMessage('Sessions are unavailable in this preview. No session was created and no photo has been sent.')}>Start session<ArrowUpRight size={16} /></button>
-            {serviceMessage && <p role="status" className="bw-service-message">{serviceMessage}</p>}
+          <p className="bw-preview-note">Start a session, open the camera, and capture what you can see. Location and compass start automatically when supported and permitted.</p>
+          <section className="bw-control-group"><h3>Session</h3><p>{checking ? 'Checking session…' : session ? 'Session active' : 'No active session'}</p>
+            <button className="bw-secondary" disabled={checking || busy || sending || !online} onClick={changeSession}>{busy ? 'Please wait…' : session ? 'End session' : 'Start session'}<ArrowUpRight size={16} /></button>
+            {message && <p role="status" className="bw-service-message">{message}</p>}
           </section>
           <section className="bw-control-group"><h3>Camera</h3><p>{camera === 'ready' ? 'Camera on · full frame shown' : camera === 'error' ? cameraError : camera === 'loading' ? 'Waiting for camera access…' : 'Camera closed'}</p>
-            <button className="bw-secondary" onClick={camera === 'ready' || camera === 'loading' ? closeCamera : openCamera}>{camera === 'ready' || camera === 'loading' ? 'Close camera' : camera === 'error' ? 'Retry camera' : 'Open camera'}<Camera size={16} /></button>
+            <button className="bw-secondary" onClick={camera === 'ready' || camera === 'loading' ? closeCamera : startCamera}>{camera === 'ready' || camera === 'loading' ? 'Close camera' : camera === 'error' ? 'Retry camera' : 'Open camera'}<Camera size={16} /></button>
           </section>
           <section className="bw-control-group"><h3>Witness location</h3><p>{locationStatus}</p>
             {location && <p className="bw-numeric">{location.latitude.toFixed(5)}, {location.longitude.toFixed(5)} · ±{Math.round(location.accuracy)} m</p>}
@@ -161,7 +178,7 @@ function MobileCamera() {
         {selected && <>
           <span className="bw-unknown"><span className="bw-topic-circle" />Not assessed</span>
           <p>{selected.description}</p>
-          <dl className="bw-evidence"><div><dt>Session finding</dt><dd>No assessment available</dd></div><div><dt>Supporting photos</dt><dd>None submitted</dd></div><div><dt>Assessment time</dt><dd>Not available</dd></div></dl>
+          <dl className="bw-evidence"><div><dt>Session finding</dt><dd>No assessment available in this view</dd></div><div><dt>Supporting photos</dt><dd>See Intelligence for submitted photos</dd></div><div><dt>Assessment time</dt><dd>Not available in this view</dd></div></dl>
           <p>{selected.limit}</p>
           <p className="bw-preview-note">Coverage changes only when assessed evidence is received. You cannot mark a topic complete yourself.</p>
         </>}
@@ -171,9 +188,8 @@ function MobileCamera() {
           <p>An instruction ring is separate from coverage. A successful upload alone never completes a topic.</p>
         </>}
         {panel === 'guidance' && <>
-          <p className="bw-preview-note">Model guidance is not connected in this preview.</p>
-          <p>Camera guidance will appear here.</p><p>When connected, the guidance service supplies instructions on where to point your camera from your current position.</p>
-          <p>No instruction has been received. Guidance is not required for capture once session and device setup are complete.</p>
+          <p style={{ whiteSpace: 'pre-line' }}>{guidance || 'Camera guidance will appear here after a snapshot is submitted.'}</p><p>The guidance service supplies instructions on where to point your camera from your current position.</p>
+          <p>Guidance is not required for capture once session and device setup are complete.</p>
           <button className="bw-secondary" disabled>Can’t get this view</button><p className="bw-control-help">Available when an active instruction is received and feedback is connected.</p>
         </>}
       </div>

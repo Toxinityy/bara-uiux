@@ -5,3 +5,5 @@ output/
 *.tsbuildinfo
 .impeccable/
 .playwright-mcp/
+.env*
+!.env.example

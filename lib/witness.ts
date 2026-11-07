@@ -16,10 +16,12 @@ export function compassHeading(reading: HeadingReading): number | null {
   return null;
 }
 
-export function captureBlock(camera: boolean, location: boolean, heading: boolean, online: boolean) {
+export function captureBlock(camera: boolean, location: boolean, heading: boolean, online: boolean, session = false, busy = false): string | null {
+  if (busy) return 'Please wait for the current request to finish.';
+  if (!session) return 'Start a session in Controls before capturing.';
   if (!camera) return 'Open the camera to begin setup.';
   if (!location) return 'Enable location in Controls to add your position.';
   if (!heading) return 'Start the compass in Controls to add direction.';
   if (!online) return 'You are offline. Submission is unavailable.';
-  return 'UI preview — photo submission is not connected.';
+  return null;
 }

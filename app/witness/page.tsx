@@ -6,8 +6,8 @@ import './witness.css';
 const inter = localFont({ src: '../../public/fonts/InterVariable.woff2', variable: '--font-inter', display: 'swap', weight: '100 900' });
 
 export const metadata: Metadata = {
-  title: 'Camera preview | BARA Witness',
-  description: 'A mobile preview of guided observation with BARA Witness. Photo submission and model services are not connected.',
+  title: 'Camera | BARA Witness',
+  description: 'Capture observations with BARA Witness using your camera, location, and compass.',
 };
 
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', themeColor: '#130C0A' };

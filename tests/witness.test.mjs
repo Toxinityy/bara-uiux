@@ -11,10 +11,12 @@ test('only earth-referenced compass readings are accepted', () => {
   assert.equal(compassHeading({ alpha: NaN, absolute: true }), null);
 });
 
-test('preview never enables submission even with all devices available', () => {
-  assert.match(captureBlock(false, false, false, true), /camera/i);
-  assert.match(captureBlock(true, false, false, true), /location/i);
-  assert.match(captureBlock(true, true, false, true), /compass/i);
-  assert.match(captureBlock(true, true, true, false), /offline/i);
-  assert.match(captureBlock(true, true, true, true), /preview.*submission/i);
+test('capture requires an active session, ready devices, connection, and no pending request', () => {
+  assert.match(captureBlock(true, true, true, true), /session/i);
+  assert.match(captureBlock(false, false, false, true, true), /camera/i);
+  assert.match(captureBlock(true, false, false, true, true), /location/i);
+  assert.match(captureBlock(true, true, false, true, true), /compass/i);
+  assert.match(captureBlock(true, true, true, false, true), /offline/i);
+  assert.match(captureBlock(true, true, true, true, true, true), /wait/i);
+  assert.equal(captureBlock(true, true, true, true, true), null);
 });
