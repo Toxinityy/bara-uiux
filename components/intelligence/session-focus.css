@@ -1,0 +1,7 @@
+.session-focus-notice { display: flex; flex-direction: column; gap: 4px; padding: 10px 22px 14px; color: var(--muted); font-size: 12px; line-height: 1.4; border-bottom: 1px solid var(--line); }
+.session-focus-notice strong { color: var(--ink); font-weight: 500; }
+.session-map-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+/* Keep session actions and counts above the floating panels, even on narrow desktops. */
+.bi-app.bi-pro .pro-window-bar { flex-wrap: nowrap; overflow-x: auto; padding: 2px 2px 6px; pointer-events: auto; scrollbar-width: thin; }
+.bi-app.bi-pro .pro-window-bar > * { flex: 0 0 auto; white-space: nowrap; }
+.bi-app.bi-pro .pro-window-bar .bi-button { min-height: 40px; padding: 8px 10px; font-size: 12px !important; }

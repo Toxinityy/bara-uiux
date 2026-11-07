@@ -16,7 +16,7 @@ const inter = localFont({
 
 export const metadata: Metadata = {
   title: 'Situation overview | BARA Intelligence',
-  description: 'Explore synthetic observations, their evidence, and what remains unresolved in the BARA Intelligence demo.',
+  description: 'Explore capture sessions, photos, and AI assessments from the connected BARA backend.',
 };
 
 export default function IntelligencePage() {

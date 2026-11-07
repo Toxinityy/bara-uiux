@@ -1,7 +1,7 @@
 export type Claim = { subject: 'Smoke' | 'Fire presence' | 'Source location'; assessment: 'Reported' | 'Unresolved' | 'Not reported'; source: string };
 export type Report = {
   id: string; title: string; description: string; area: string | null;
-  receivedAt: string; observedAt: string | null; review: string | null;
+  receivedAt: string | null; observedAt: string | null; review: string | null;
   position: { latitude: number; longitude: number; authorized: boolean } | null;
   claims: Claim[];
   snapshot?: SnapshotEvidence;
@@ -13,22 +13,23 @@ export type Analysis = {
 export type SnapshotEvidence = {
   sessionId: string; direction: number | null; imageUrl: string | null;
   analyses: Analysis[] | null; analyzedAt: string | null; analysisMessage: string | null;
-  followUp: Record<string, unknown> | null;
+  followUp: Record<string, unknown> | null; captureQuality?: Record<string, unknown> | null;
 };
 export type ChecklistItem = {
   criterionKey: string; criterionName: string; scope: string;
   status: 'resolved' | 'uncertain' | 'unavailable';
-  known: Record<string, { value: unknown; snapshotId: string; capturedAt: string | null }>;
+  known: Record<string, { value: unknown; snapshotId: string; capturedAt: string | null;
+    sources?: { value: unknown; snapshotId: string; capturedAt: string | null }[] }>;
   unresolvedFields: string[]; unavailableSnapshotIds: string[];
-  observations: { snapshotId: string; criterionVersion: number; result: Record<string, unknown> }[];
+  observations: { snapshotId: string; criterionVersion: number; result: Record<string, unknown>; capturedAt?: string | null; captureAssessment?: Record<string, unknown>; qualityUnavailable?: boolean }[];
 };
 export type CaptureSession = {
   id: string; startedAt: string; endedAt: string | null; status: 'active' | 'ended'; checklistRevision: number;
-  checklist?: { verificationStatus: 'complete' | 'incomplete'; snapshotIds: string[]; latestSnapshotId: string; items: ChecklistItem[]; gaps: { id: string; criterionKey: string; field: string; priority: number }[]; summary: string };
+  checklist?: { verificationStatus: 'complete' | 'incomplete'; snapshotIds: string[]; latestSnapshotId: string | null; items: ChecklistItem[]; gaps: { id: string; criterionKey: string; field: string; priority: number }[]; summary: string };
   instruction?: { status: 'ready' | 'not_needed' | 'unavailable'; witnessMessage?: string; reason?: string; gapId?: string; checklistRevision?: number };
 };
 export type Incident = { id: string; title: string; reportIds: string[] };
-export type Dataset = { demo: true; referenceTime: string; reports: Report[]; incidents: Incident[]; sessions?: CaptureSession[] };
+export type Dataset = { demo: boolean; referenceTime: string; reports: Report[]; incidents: Incident[]; sessions?: CaptureSession[] };
 export type Filters = { area: string; period: 'all' | '24h' | '7d'; search: string };
 
 export function displayPosition(report: Report) {
@@ -56,7 +57,7 @@ export function captureAnalysisState(report: Report) {
 export function captureSummary(reports: Report[]) {
   const assessed = reports.filter(r => r.snapshot?.analyses?.some(a => a.status === 'completed'));
   return {
-    text: reports.length ? `${reports.length} captures available. ${assessed.length} include completed AI assessments.` : 'No captures match this selection.',
+    text: reports.length ? `${reports.length} ${reports.length === 1 ? "capture" : "captures"} available. ${assessed.length} ${assessed.length === 1 ? "includes" : "include"} completed AI assessments.` : 'No captures match this selection.',
     sources: assessed.map(r => r.id),
     unknown: 'An image assessment does not verify a fire or its location. Source independence is unknown.',
   };
@@ -97,7 +98,7 @@ export function validateDataset(value: unknown): Dataset {
   if (data.demo !== true || !date(data.referenceTime) || !Array.isArray(data.reports) || !Array.isArray(data.incidents)) throw new Error('The report data has an unsupported format.');
   const ids = new Set<string>();
   for (const r of data.reports) {
-    if (!r || typeof r.id !== 'string' || ids.has(r.id) || typeof r.title !== 'string' || typeof r.description !== 'string' || (r.area !== null && typeof r.area !== 'string') || !date(r.receivedAt) || (r.observedAt !== null && !date(r.observedAt)) || (r.review !== null && typeof r.review !== 'string') || !Array.isArray(r.claims)) throw new Error('A report is incomplete or invalid.');
+    if (!r || typeof r.id !== 'string' || ids.has(r.id) || typeof r.title !== 'string' || typeof r.description !== 'string' || (r.area !== null && typeof r.area !== 'string') || (r.receivedAt !== null && !date(r.receivedAt)) || (r.observedAt !== null && !date(r.observedAt)) || (r.review !== null && typeof r.review !== 'string') || !Array.isArray(r.claims)) throw new Error('A report is incomplete or invalid.');
     ids.add(r.id);
     if (r.position !== null && (!r.position || typeof r.position.latitude !== 'number' || typeof r.position.longitude !== 'number' || typeof r.position.authorized !== 'boolean')) throw new Error('A report position is invalid.');
     for (const c of r.claims) if (!c || !['Smoke', 'Fire presence', 'Source location'].includes(c.subject) || !['Reported', 'Unresolved', 'Not reported'].includes(c.assessment) || typeof c.source !== 'string') throw new Error('A claim assessment is invalid.');
@@ -114,7 +115,7 @@ export function validateDataset(value: unknown): Dataset {
       sessionIds.add(s.id);
       if (s.checklist) {
         const belongs = (id: string) => data.reports.some(r => r.id === id && r.snapshot?.sessionId === s.id);
-        if (!['complete', 'incomplete'].includes(s.checklist.verificationStatus) || !s.checklist.snapshotIds.every(belongs) || !belongs(s.checklist.latestSnapshotId)) throw new Error('Invalid checklist sources.');
+        if (!['complete', 'incomplete'].includes(s.checklist.verificationStatus) || !s.checklist.snapshotIds.every(belongs) || (s.checklist.latestSnapshotId !== null && !belongs(s.checklist.latestSnapshotId))) throw new Error('Invalid checklist sources.');
         for (const item of s.checklist.items) {
           if (!['resolved', 'uncertain', 'unavailable'].includes(item.status)) throw new Error('Invalid checklist state.');
           if (!Object.values(item.known).every(v => belongs(v.snapshotId) && (v.capturedAt === null || date(v.capturedAt))) || !item.observations.every(o => belongs(o.snapshotId)) || !item.unavailableSnapshotIds.every(belongs)) throw new Error('Invalid evidence source.');
@@ -130,7 +131,7 @@ export function validateDataset(value: unknown): Dataset {
   return data;
 }
 
-// UI contract preview only; connecting the session/snapshot endpoints is a separate integration step.
+// Explicit synthetic preview loader. Live data is handled separately by intelligence-live.ts.
 export async function loadIntelligence(signal: AbortSignal, scenario = false): Promise<Dataset> {
   const response = await fetch(scenario ? '/data/intelligence-analysis.json' : '/data/intelligence-demo.json', { signal, cache: 'no-store' });
   if (!response.ok) throw new Error(`Reports could not be loaded (HTTP ${response.status}).`);

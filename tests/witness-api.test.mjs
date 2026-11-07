@@ -1,8 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sessionRequest, captureSnapshot, sendSnapshot, rejectInstruction, instructionMessage, WitnessApiError } from '../lib/witness-api.ts';
+import { sessionRequest, sessionSnapshotCount, captureSnapshot, sendSnapshot, rejectInstruction, instructionMessage, WitnessApiError } from '../lib/witness-api.ts';
 
 const id = '0123456789abcdef01234567';
+
+test('summary counts saved photos including captures not yet represented in the checklist', async t => {
+  const fetch = t.mock.method(globalThis, 'fetch', async (path, options) => {
+    assert.equal(path, `/api/backend/sessions/${id}/snapshots`);
+    assert.equal(options.cache, 'no-store');
+    return Response.json({ data: [{ id: 'photo-1', sessionId: id }, { id: 'photo-2', sessionId: id, analyzedAt: null }] });
+  });
+  assert.equal(await sessionSnapshotCount(id), 2);
+  fetch.mock.mockImplementation(async () => Response.json({ data: [] }));
+  assert.equal(await sessionSnapshotCount(id), 0);
+  fetch.mock.mockImplementation(async () => Response.json({ data: [{ id: 'photo', sessionId: 'another-session' }] }));
+  await assert.rejects(sessionSnapshotCount(id), /could not confirm/i);
+  fetch.mock.mockImplementation(async () => Response.json({ message: 'Storage unavailable' }, { status: 503 }));
+  await assert.rejects(sessionSnapshotCount(id), /storage unavailable/i);
+});
 
 test('session lifecycle uses the same-origin API proxy and the backend session envelope', async t => {
   const requests = [];

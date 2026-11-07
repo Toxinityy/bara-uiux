@@ -1,5 +1,5 @@
-// Witness is a mobile UI preview; server-side reporting is not connected.
+// Application entry points use the existing same-origin backend proxy.
 export const destinations = {
-  intelligence: { label: 'Open Intelligence demo', href: '/intelligence' },
+  intelligence: { label: 'Open Intelligence', href: '/intelligence' },
   witness: { label: 'Open Witness preview', href: '/witness' },
 };

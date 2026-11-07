@@ -1,0 +1,7 @@
+.confidence-filter-controls { margin: 12px 0; padding: 12px 0; border: 0; border-top: 1px solid var(--line); grid-column: 1/-1; min-width: 0; }
+.confidence-filter-controls legend { padding: 0 8px 0 0; font-size: 12px; color: var(--muted); }
+.confidence-filter-controls>div { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.bi-app .confidence-filter-controls label { display: inline-flex; flex-direction: row; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; }
+.confidence-filter-controls input { margin: 0; }
+.confidence-swatch { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; border: 1px solid #ffffff80; }
+.confidence-filter-controls .filter-reset { margin-top: 8px; font-size: 12px; }

@@ -20,6 +20,8 @@ The criteria rail uses the backend checklist. Dots turn green only for `resolved
 
 Skip request dismisses the current instruction in one tap, without a reason or confirmation. The backend remembers the declined information gap for the session and chooses another eligible request. Skipping never marks a criterion confirmed. If all eligible requests have been skipped, no further request is shown; existing evidence remains unchanged.
 
+Ending a session opens a simple recap with photos saved, session duration, confirmed findings, and topics still unclear, unavailable, or unassessed. Camera, GPS, and compass are released when the recap opens. Findings use the saved backend checklist; skipping a request or not seeing something in a photo never counts as confirmation. Photo totals come from the stored snapshots, including photos awaiting assessment. The recap refreshes every five seconds for late results, keeps available findings on a refresh failure, and offers a retry. Reloading the same tab restores the last completed recap without activating device sensors. Start new session returns to camera setup; Open camera then creates the next session. No additional AI request is made to write the recap.
+
 To target a service running directly on the PC, copy `.env.example` to `.env`, set `API_BASE_URL=http://host.docker.internal:3000`, and rebuild. The proxy destination is embedded at build time. Container-side code can also reach other PC services through `host.docker.internal`; other BARA containers are reachable by their service names on `bara-data`.
 
 ```sh
@@ -77,3 +79,28 @@ Inter is subset locally to Latin/Latin Extended, punctuation and currency symbol
 The observation map uses OpenStreetMap raster tiles with attribution, zoom and pan controls. Network access is required for the basemap; if tiles fail, selectable observation positions and the report list remain available. Positions in the fixtures are synthetic. A future service adapter must supply only data authorized for the viewer; client-side display checks are not access control.
 
 Weather, basemap, and synthetic dataset provenance: [Data sources](DATA_SOURCES.md).
+
+
+## Connected Intelligence dashboard
+
+`/intelligence` now defaults to the same backend as the temporary dashboard on port 3002, using the existing `/api/backend` proxy. It loads `GET /sessions`, then each selected session and its snapshots, and streams photos through `GET /snapshots/:id/image`. Normal and Pro share live capture/session filters, map selection, image findings, checklist evidence sources, current Witness requests, and photo comparison (Pro).
+
+The newest 100 sessions load initially; **Load all sessions** includes older records. The visible tab refreshes every 15 seconds with at most four backend requests in flight. Failed or malformed refreshes retain the last successful dataset and display an error; demo data is never substituted. Data settings offers the two separate synthetic examples explicitly. The read endpoints do not expose authentication, record provenance, operational incidents, review persistence, or receipt timestamps; none is invented by this adapter. Capture time is used for filtering and sessions without photos remain visible in the Sessions view. The existing local access model is unchanged.
+
+Photos have loading/error/retry states. AI processing status, session lifecycle, and evidence coverage remain separate. Weather in Pro is a separate, user-triggered Open-Meteo lookup, not backend evidence. Map positions represent cameras, not fire locations.
+
+Rebuild the UI with `docker compose up -d --build --wait ui`. Tests use Node.js 24 (`npm test`); run `npm run lint` and `npm run typecheck` as well. Live integration was checked against all 154 sessions / 1,307 captures available on 7 November 2026, including a successful JPEG stream. Counts change as Witness sessions are submitted.
+
+
+## Session evidence confidence
+
+Intelligence displays a transparent criteria score on capture/session rows and in the Normal/Pro inspector. Each of the five Witness criteria contributes 20 points only when the backend checklist marks it resolved and it contains a meaningful known value linked to a capture in that session. The denominator stays five when criteria are missing; distance and unknown future criteria are excluded. Repeated captures and repeated assessments do not add points.
+
+Levels: 0 = No confirmed criteria; 20 = Low; 40 or 60 = Moderate; 80 or 100 = High. A missing checklist is Not assessed rather than zero. The breakdown shows each criterion and its contribution. This is accumulated session evidence coverage, not a calibrated probability of fire, danger rating, or assertion about current conditions. The score is derived from saved backend evidence in the UI and updates on the normal refresh; it does not trigger AI requests or change stored assessments.
+
+
+### Confidence map and viewing direction
+
+Map dots and capture/session confidence badges share a five-color legend: High (teal), Moderate (amber), Low (coral), No confirmed criteria (slate), and Not assessed (violet). Toggle confidence levels in the map legend or filters; the map, lists, sessions and counts share the selection. All levels start enabled, and Clear/Reset filters restores them. Filtering never recalculates scores from a reduced capture set.
+
+Selecting a located capture zooms to its position and draws its recorded direction when **Direction cone** is enabled. The cone is illustrative: 60 degrees wide and 45 metres long, matching the temporary dashboard, not a measured camera field of view, fire distance, or perimeter. Heading reference and accuracy are not supplied. Invalid/missing headings produce no cone; changing selection or filtering out the capture removes the previous cone. Normal and Pro both offer the cone toggle and confidence controls.

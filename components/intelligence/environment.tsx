@@ -47,21 +47,6 @@ export function Environment({map,pro,position,reference,onColor,density}:{map:GL
 
  useEffect(()=>{
 
-  if(pro && position){
-
-   // Async provider load updates its own pending/result states.
-
-   // eslint-disable-next-line react-hooks/set-state-in-effect
-   void load();
-
-  }else{abort.current?.abort();}
-
-  return()=>abort.current?.abort();
-
- },[load,position,pro]);
-
- useEffect(()=>{
-
   if(!map)return;
 
   if(!map.getSource('environment')){map.addSource('environment',{type:'geojson',data:{type:'FeatureCollection',features:[]}});map.addLayer({id:'environment',type:'fill',source:'environment',paint:{'fill-color':['interpolate',['linear'],['get','value'],0,'#4289b5',50,'#f0d47d',100,'#d95026'],'fill-opacity':.5}},'points');}
@@ -96,7 +81,7 @@ export function Environment({map,pro,position,reference,onColor,density}:{map:GL
  const chartValues=row?.values[chart]??[]; const chartMin=Math.min(0,...chartValues.filter((v):v is number=>v!==null)); const chartMax=Math.max(chartMin+1,...chartValues.filter((v):v is number=>v!==null));
 
  if (!pro) return null;
- return <section className="environment-panel" aria-label="Environmental conditions"><h2>Environmental conditions</h2><p>Real weather context / synthetic reports. Not confirmation of fire.</p><label>Time context<select value={latest?'latest':'report'} onChange={e=>{setLatest(e.target.value==='latest');setDate('');setHour(null);}}><option value="report">Report observation or dataset reference</option><option value="latest">Latest model estimate</option></select></label>{pro&&<><label>Date (UTC)<input type="date" value={day} onChange={e=>setDate(e.target.value)}/></label><label>Hour (UTC): {selectedHour}:00<input type="range" min="0" max="23" value={selectedHour} onChange={e=>setHour(Number(e.target.value))}/></label></>}
+ return <section className="environment-panel" aria-label="Environmental conditions"><h2>Environmental conditions</h2><p>Weather model context, separate from capture evidence. Load a location or map area to request weather from Open-Meteo.</p><label>Time context<select value={latest?'latest':'report'} onChange={e=>{setLatest(e.target.value==='latest');setDate('');setHour(null);}}><option value="report">Report observation or dataset reference</option><option value="latest">Latest model estimate</option></select></label>{pro&&<><label>Date (UTC)<input type="date" value={day} onChange={e=>setDate(e.target.value)}/></label><label>Hour (UTC): {selectedHour}:00<input type="range" min="0" max="23" value={selectedHour} onChange={e=>setHour(Number(e.target.value))}/></label></>}
 
  <button className="bi-button" disabled={busy} onClick={()=>void load()}>Load / retry location</button>{pro&&<button className="bi-button" disabled={busy||!map} onClick={()=>void load(true)}>Load this map area</button>}{busy&&<p role="status">Loading weather...</p>}{error&&<p role="alert">{error}</p>}{row&&stale&&<p role="status">Previous context retained; stale. Load the selected context. Map weather hidden.</p>}
 

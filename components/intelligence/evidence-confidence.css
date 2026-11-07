@@ -1,0 +1,15 @@
+.evidence-confidence { margin: 16px 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--raised); }
+.confidence-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.confidence-heading h3 { margin: 0; font-size: 14px; }
+.confidence-heading strong { font-size: 16px; color: var(--focus); }
+.evidence-confidence meter { display: block; width: 100%; height: 14px; margin: 10px 0; }
+.evidence-confidence meter::-webkit-meter-bar { background: var(--line); border: 0; }
+.evidence-confidence meter::-webkit-meter-optimum-value { background: var(--focus); }
+.evidence-confidence p, .evidence-confidence small { font-size: 12px; line-height: 1.6; color: var(--muted); }
+.evidence-confidence details { margin: 10px 0; }
+.evidence-confidence summary { cursor: pointer; font-size: 12px; }
+.confidence-criteria { list-style: none; padding: 0; margin: 10px 0; }
+.confidence-criteria li { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+.confidence-criteria li span:last-child { color: var(--muted); }
+.confidence-badge { display: block; width: fit-content; margin: 8px 0; padding: 4px 7px; border: 1px solid var(--line); border-radius: 5px; font-size: 11px; line-height: 1.4; color: var(--muted); }
+.confidence-badge[data-level="High"] { color: var(--focus); border-color: var(--focus); }

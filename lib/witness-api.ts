@@ -1,5 +1,17 @@
 export type WitnessInstruction = { status: string; witnessMessage?: string; gapId?: string; checklistRevision?: number };
-export type WitnessChecklist = { items: { criterionKey: string; criterionName: string; status: 'resolved' | 'uncertain' | 'unavailable' }[] };
+export type WitnessChecklist = {
+  snapshotIds?: string[];
+  deferredCriteria?: string[];
+  items: {
+    criterionKey: string;
+    criterionName: string;
+    status: 'resolved' | 'uncertain' | 'unavailable';
+    known?: Record<string, { value: unknown; snapshotId?: string; capturedAt?: string }>;
+    unresolvedFields?: string[];
+    observations?: { snapshotId: string; capturedAt: string; result: Record<string, unknown> }[];
+    unavailableSnapshotIds?: string[];
+  }[];
+};
 export type WitnessSession = {
   id: string;
   status: 'active' | 'ended';
@@ -41,6 +53,16 @@ export async function sessionRequest(path = '', method: 'GET' | 'POST' = 'POST',
   const timeout = AbortSignal.timeout(15000);
   const body = await request(`/sessions${path}`, { method, signal: signal ? AbortSignal.any([signal, timeout]) : timeout });
   return readSession(body);
+}
+
+export async function sessionSnapshotCount(id: string, signal?: AbortSignal): Promise<number> {
+  const timeout = AbortSignal.timeout(15000);
+  const body = await request(`/sessions/${id}/snapshots`, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout });
+  if (!Array.isArray(body?.data) || body.data.some((snapshot: { id?: unknown; sessionId?: unknown } | null) =>
+    !snapshot || typeof snapshot.id !== 'string' || snapshot.sessionId !== id)) {
+    throw new Error('Could not confirm how many photos were saved.');
+  }
+  return body.data.length;
 }
 
 function readSession(body: { data?: WitnessSession } | null): WitnessSession {

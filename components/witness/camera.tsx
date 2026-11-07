@@ -7,6 +7,9 @@ import { BrandLogo, BrandLogoFilters } from '../landing/brand-logo';
 import { captureBlock, witnessTopics } from '../../lib/witness';
 import { useDevices } from './use-devices';
 import { useSession } from './use-session';
+import { useSessionSummary } from './use-session-summary';
+import { SessionSummary } from './session-summary';
+import type { WitnessSession } from '../../lib/witness-api';
 
 const mobileQuery = '(max-width: 767px), (pointer: coarse) and (max-width: 1024px) and (max-height: 600px)';
 const subscribeMobile = (callback: () => void) => {
@@ -16,7 +19,18 @@ const subscribeMobile = (callback: () => void) => {
 };
 export function WitnessCamera() {
   const mobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia(mobileQuery).matches, () => false);
-  return <main className="bw"><BrandLogoFilters />{mobile ? <MobileCamera /> : <DesktopNotice />}</main>;
+  const sessionState = useSession();
+  return <main className="bw"><BrandLogoFilters />{
+    sessionState.completedSession ? <CompletedSession key={sessionState.completedSession.id} session={sessionState.completedSession} onStartNew={sessionState.dismissSummary} />
+      : sessionState.checking ? <div className="bw-restoring" role="status">Checking session…</div>
+      : mobile ? <MobileCamera sessionState={sessionState} /> : <DesktopNotice />
+  }</main>;
+}
+
+function CompletedSession({ session: initial, onStartNew }: { session: WitnessSession; onStartNew: () => void }) {
+  const { session, snapshotCount, loading, error, refresh } = useSessionSummary(initial);
+  return <SessionSummary session={session} snapshotCount={snapshotCount} loading={loading} error={error}
+    onRetry={() => { void refresh(); }} onStartNew={onStartNew} starting={false} startDisabled={false} />;
 }
 
 function DesktopNotice() {
@@ -62,9 +76,9 @@ function CriterionIndicator({ topic, selected, onSelect }: {
   </button>;
 }
 
-function MobileCamera() {
+function MobileCamera({ sessionState }: { sessionState: ReturnType<typeof useSession> }) {
   const { video, requestSensorPermissions, camera, location, heading, closeCamera, attachVideo, frameReady, cameraError, openCamera, locationStatus, locationOn, stopLocation, startLocation, compassStatus, compassOn, stopCompass, startCompass } = useDevices();
-  const { session, checking, busy, sending, message, guidance, startSession, endSession, capture, skipRequest } = useSession();
+  const { session, checking, busy, sending, message, guidance, startSession, endSession, capture, skipRequest } = sessionState;
   const shell = useRef<HTMLDivElement>(null);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [online, setOnline] = useState(() => navigator.onLine);
@@ -92,7 +106,7 @@ function MobileCamera() {
     void startSession();
   }
   async function finishSession() {
-    if (await endSession()) closeCamera();
+    await endSession();
   }
   function snap() {
     if (blocked || !video.current || !location || heading === null) return;

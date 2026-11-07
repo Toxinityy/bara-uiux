@@ -4,12 +4,17 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { captureSnapshot, instructionMessage, rejectInstruction, sendSnapshot, sessionRequest, WitnessApiError, type SnapshotMetadata, type WitnessSession } from '../../lib/witness-api';
 
 const storageKey = 'bara.witness.activeSession';
+const summaryStorageKey = 'bara.witness.lastEndedSession';
 function remember(id: string | null) {
   try { if (id) sessionStorage.setItem(storageKey, id); else sessionStorage.removeItem(storageKey); } catch { /* Storage may be disabled. */ }
+}
+function rememberSummary(id: string | null) {
+  try { if (id) sessionStorage.setItem(summaryStorageKey, id); else sessionStorage.removeItem(summaryStorageKey); } catch { /* Storage may be disabled. */ }
 }
 
 export function useSession() {
   const [session, setSession] = useState<WitnessSession | null>(null);
+  const [completedSession, setCompletedSession] = useState<WitnessSession | null>(null);
   const [checking, setChecking] = useState(true);
   const [busy, setBusy] = useState(false);
   const [sending, setSending] = useState(false);
@@ -19,6 +24,23 @@ export function useSession() {
   const controller = useRef<AbortController | null>(null);
   const mounted = useRef(false);
   const latestRevision = useRef(0);
+  const lifecycle = useRef(0);
+
+  const completeSession = useCallback((current: WitnessSession) => {
+    lifecycle.current++;
+    rememberSummary(current.id);
+    remember(null);
+    setCompletedSession(current);
+    setSession(null);
+    latestRevision.current = 0;
+    setGuidance('');
+    setMessage('');
+  }, []);
+
+  function dismissSummary() {
+    rememberSummary(null);
+    setCompletedSession(null);
+  }
 
   const checkSession = useCallback(async (id: string, signal?: AbortSignal) => {
     const current = await sessionRequest(`/${id}`, 'GET', signal);
@@ -27,29 +49,27 @@ export function useSession() {
       if ((current.checklistRevision ?? 0) < latestRevision.current) return current;
       latestRevision.current = current.checklistRevision ?? 0;
       setSession(current);
+      setCompletedSession(null);
+      rememberSummary(null);
       remember(current.id);
       setGuidance(instructionMessage(current.instruction) ?? '');
     } else {
-      setSession(null);
-      latestRevision.current = 0;
-      remember(null);
-      setGuidance('');
-      setMessage('Session ended. Start a new session to capture again.');
+      completeSession(current);
     }
     return current;
-  }, []);
+  }, [completeSession]);
 
   useEffect(() => {
     mounted.current = true;
     const restore = new AbortController();
     const startup = window.setTimeout(() => {
       let saved: string | null = null;
-      try { saved = sessionStorage.getItem(storageKey); } catch { /* Storage may be disabled. */ }
+      try { saved = sessionStorage.getItem(storageKey) ?? sessionStorage.getItem(summaryStorageKey); } catch { /* Storage may be disabled. */ }
       if (saved && /^[a-f\d]{24}$/i.test(saved)) {
         const id = saved;
         void checkSession(id, restore.signal).catch(error => {
           if (restore.signal.aborted) return;
-          if (error instanceof WitnessApiError && error.status === 404) remember(null);
+          if (error instanceof WitnessApiError && error.status === 404) { remember(null); rememberSummary(null); }
           setMessage('Could not restore the session. Check your connection and retry.');
         }).finally(() => { if (!restore.signal.aborted) setChecking(false); });
       } else { setChecking(false); }
@@ -65,16 +85,16 @@ export function useSession() {
     const refresh = async () => {
       if (pending.current || refreshing) return;
       refreshing = true;
+      const generation = lifecycle.current;
       try {
         const current = await sessionRequest(`/${sessionId}`, 'GET', abort.signal);
-        if (abort.signal.aborted || pending.current || !mounted.current || (current.checklistRevision ?? 0) < latestRevision.current) return;
+        if (abort.signal.aborted || pending.current || generation !== lifecycle.current || !mounted.current || (current.checklistRevision ?? 0) < latestRevision.current) return;
         latestRevision.current = current.checklistRevision ?? 0;
         if (current.status === 'active') {
           setSession(current);
           setGuidance(instructionMessage(current.instruction) ?? '');
         } else {
-          setSession(null); remember(null); setGuidance('');
-          setMessage('Session ended. Open the camera to start again.');
+          completeSession(current);
         }
       } catch { /* Keep the last confirmed state during a temporary connection failure. */ }
       finally { refreshing = false; }
@@ -82,12 +102,13 @@ export function useSession() {
     const timer = window.setInterval(refresh, 5000);
     window.addEventListener('focus', refresh);
     return () => { abort.abort(); window.clearInterval(timer); window.removeEventListener('focus', refresh); };
-  }, [sessionId]);
+  }, [sessionId, completeSession]);
 
   async function changeSession(action: 'start' | 'end'): Promise<boolean> {
     if (pending.current || checking) return false;
     if (action === 'start' && session?.status === 'active') return true;
     if (action === 'end' && !session) return false;
+    lifecycle.current++;
     pending.current = true;
     setBusy(true);
     setMessage('');
@@ -99,6 +120,7 @@ export function useSession() {
         try {
           const restored = await checkSession(saved);
           if (restored?.status === 'active') return true;
+          if (restored?.status === 'ended') return false;
           if (!mounted.current) return false;
         }
         catch (error) {
@@ -107,19 +129,21 @@ export function useSession() {
         }
       }
       const current = await sessionRequest(action === 'end' ? `/${session!.id}/end` : '');
-      if (!mounted.current) { if (current.status === 'active') remember(current.id); return false; }
+      if (!mounted.current) {
+        if (current.status === 'active') remember(current.id);
+        else { rememberSummary(current.id); remember(null); }
+        return false;
+      }
       if (current.status === 'active') {
         latestRevision.current = current.checklistRevision ?? 0;
         remember(current.id);
         setSession(current);
+        setCompletedSession(null);
+        rememberSummary(null);
         setGuidance('');
         setMessage('');
       } else {
-        latestRevision.current = 0;
-        remember(null);
-        setSession(null);
-        setGuidance('');
-        setMessage('');
+        completeSession(current);
       }
       return true;
     } catch (error) {
@@ -181,7 +205,8 @@ export function useSession() {
       const current = await rejectInstruction(session.id, session.instruction);
       if (!mounted.current) return;
       latestRevision.current = current.checklistRevision ?? latestRevision.current;
-      setSession(current.status === 'active' ? current : null);
+      if (current.status === 'ended') completeSession(current);
+      else setSession(current);
       setGuidance(current.status === 'active' ? instructionMessage(current.instruction) ?? 'Request skipped.' : '');
     } catch (error) {
       if (!mounted.current) return;
@@ -193,6 +218,6 @@ export function useSession() {
     }
   }
 
-  return { session, checking, busy, sending, message, guidance,
+  return { session, completedSession, dismissSummary, checking, busy, sending, message, guidance,
     startSession: () => changeSession('start'), endSession: () => changeSession('end'), capture, skipRequest };
 }

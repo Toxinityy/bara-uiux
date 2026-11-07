@@ -1,5 +1,7 @@
 # Backend handoff UI alignment
 
+> Historical preview notes below. The live integration now defaults to the connected backend; see the README Connected Intelligence dashboard section and `lib/intelligence-live.ts`. Synthetic fixtures remain an explicit separate option.
+
 Scope: UI and labeled fixtures only, following `public/UI-BACKEND-HANDOFF.md` and the user's clarification. No proxy, endpoint calls, authentication, persistence, upload or Witness implementation was added. The handoff references `next.config.ts` and `lib/witness-api.ts`; neither exists in this checkout. Deployment behavior has not been verified.
 
 | Surface | Current behavior |
